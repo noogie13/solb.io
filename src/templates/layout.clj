@@ -29,7 +29,7 @@
               "contact"]]]
            [:h1 "S"
             [:span {:style "font-size: 26px;"}
-             "OLOMON"] "BLOCH"]]
+             "OLOMON"] " BLOCH"]]
           [:div {:class "aboutme"}
            [:img {:src "images/me.jpg", :class "face"}]
            [:div {:class "social"}
