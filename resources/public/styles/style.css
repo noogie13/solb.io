@@ -1,6 +1,17 @@
 * {
     box-sizing: border-box;
 }
+table {
+    border: 1px solid white;
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+    border: 1px solid white;
+    padding: 5px;
+    text-align: left;
+}
+
 body, html {
     /* background-color: #e3e7ea; */
     -webkit-text-size-adjust: 100%;
@@ -101,6 +112,7 @@ header {
     position: static;
     text-decoration: none;
     overflow: hidden;
+    margin: 3px;
 }
 .social img:hover {
     transition: .2s;
