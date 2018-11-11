@@ -1,0 +1,295 @@
+* {
+    box-sizing: border-box;
+}
+body, html {
+    /* background-color: #e3e7ea; */
+    -webkit-text-size-adjust: 100%;
+    height: 100%;
+    margin: 0;
+    font-size: 100%;
+}
+@font-face {
+    font-family: "Alcubierre";
+    src: url("Alcubierre.ttf") format("truetype"), url("Alcubierre.woff") format("woff");
+}
+@font-face {
+    font-family: "Computer Modern";
+    src: url("computer-modern/Serif/cmunbx.ttf") format("truetype");
+}
+h1 {
+    margin: 0;
+    padding-top: 50px;
+    font-family: "Alcubierre", sans-serif;
+    letter-spacing: 5px;
+    font-size: 35px;
+    text-align: center;
+    color: white;
+}
+.navbarcontain {
+    width: 100%;
+    display: block;
+    margin: auto;
+    position: fixed;
+    /* background-color: #2f363d; */
+    background-color: rgb(30,30,30);
+    margin-bottom: 50px;
+    top: 0;
+}
+.navbar {
+    display: block;
+    /* background-color: #2f363d; */
+    background-color: rgb(30,30,30);
+    overflow: hidden;
+    margin: auto;
+    max-width: 750px;
+    top: 0;
+}
+.navbar a.left {
+    font-family: "Alcubierre", sans-serif;
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.navbar a.right {
+    font-family: "Alcubierre", sans-serif;
+    float: right;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.navbar a:hover {
+    background: #ddd;
+    color: black;
+}
+header {
+    /* background-color: #2f363d; */
+    background-color: rgb(30,30,30);
+    padding-bottom: 20px;
+}
+.face {
+    padding: 20px;
+    /* -webkit-filter: blur(5px); */
+    display: flex;
+    margin: auto;
+    object-fit: cover;
+    border-radius: 50%;
+    height: 55vw;
+    width: 55vw;
+    min-height: 350px;
+    min-width: 350px;
+    max-height: 550px;
+    max-width: 550px;
+}
+.icons {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    verticle-align: middle;
+    margin: auto;
+}
+.social {
+    margin: auto;
+    text-align: center;
+    align: center;
+}
+.social a {
+    position: static;
+    text-decoration: none;
+    overflow: hidden;
+}
+.social img:hover {
+    transition: .2s;
+    opacity: .5;
+}
+.strengthflex {
+    /* background-color: #a4b6c0; */
+    background-color: rgb(30,30,30);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+.aboutme {
+    background-color: #e3e7ea;
+    justify-content: center;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+}
+h2 {
+    margin: 0;
+    padding-top: 20px;
+    padding-left: 30px;
+    font-family: "Alcubierre", sans-serif;
+    letter-spacing: 3px;
+    font-size: 18px;
+    color: white;
+}
+.stricon {
+    height: 9vw;
+    max-height: 60px;
+    min-height: 50px;
+    width: auto;
+}
+.abouticon {
+    font-family: "Alcubierre", sans-serif;
+    background-size: cover;
+    background-position:center;
+    font-size: auto;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding: 40px; */
+    /* height: 18vw; */
+    width: 33.333%;
+    height: 39vw;
+    max-height: 370px;
+    color: rgba(0,0,0,0);
+}
+@media screen and (max-width: 900px) {
+    .abouticon {
+        width: 100%;
+        height: 380px;
+    }
+}
+.break {
+    margin-top: 38px;
+    margin-left: 30px;
+    height: 3px;
+    width: 8%;
+    background-color: white;
+}
+.darken {
+    align-items: left;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: rgba(30,30,30,.65);
+    color: white;
+    font-family: "Computer Modern", serif;
+}
+.darken h2 {
+    font-size: 27px;
+    text-align: left;
+    padding-top: 30px;
+    margin: 0;
+    transition: padding .4s ease;
+    -webkit-transition: padding .4s ease;
+}
+@-webkit-keyframes blink {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+@keyframes blink {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+.terminal:hover {
+    background-color: rgba(30,30,30,.9);
+}
+.terminal {
+    margin: auto;
+    width: 80%;
+    padding: 10px;
+    outline: solid lightblue 3px;
+    display: block;
+    font-size: 13px;
+    color: white;
+    background-color: rgba(30,30,30,.65);
+    font-family: Hack, monospace;
+    text-align: left;
+    position: block;
+}
+.terminal::after {
+    content: "";
+    position: inline-block;
+    top: 0;
+    margin-top: 2px;
+    right: -20px;
+    background-color: white;
+    display: inline-block;
+    vertical-align: top;
+    width: 6px;
+    height: 12px;
+    -webkit-animation: blink 1s step-end infinite;
+    animation: blink 1s step-end infinite;
+}
+.equations {
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.math-text {
+    padding: 15px;
+    margin: auto;
+    margin-right: 25px;
+    margin-left: 25px;
+    display: block;
+    font-size: 13px;
+    color: white;
+    background-color: rgba(30,30,30,.65);
+    text-align: left;
+    position: block;
+}
+.abouticon:hover img {
+    opacity: .1;
+    transition: .2s;
+}
+.strengthflex a {
+    text-decoration: none;
+}
+.strengthflex a:link {
+    text-decoration: none;
+}
+.strengthflex a:visited {
+    text-decoration: none;
+}
+.strengthflex a:active {
+    text-decoration: none;
+}
+.asseen {
+    background-color: #a4b6c0;
+}
+.asseenflex {
+    padding: 25px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+.asseen img {
+    height: 50px;
+}
+.experience {
+    background-color: #e3e7ea;
+}
+.experienceflex {
+    padding: 25px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+.experience img {
+    height: 75px;
+}
+.experience h2 {
+    color: #2f363a;
+}
