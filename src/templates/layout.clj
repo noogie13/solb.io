@@ -73,7 +73,7 @@
                [:h2 {:style "font-family:'Computer Modern', serif;"}
                 "MATHEMATICS"]
                [:div {:class "math-text"}
-                "Studying applied mathematics, enjoys diving into questions of not just how do we solve a problem, but how can we solve it " [:i "fastest."]]]]
+                "Studying applied mathematics, enjoys diving into questions of not just how do we solve a problem, but how can we solve it " [:i "optimally."]]]]
              [:div {:class "abouticon"
                     :style "background-image:url('images/backgrounds/mars3.jpg')"}
               [:div {:class "darken"}
