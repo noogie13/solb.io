@@ -80,16 +80,22 @@
                [:div {:class "break"}]
                [:h2 "DATA ANALYSIS"]
                [:div {:class "math-text"
-                      :style "font-family: Hack"}
+                      :style "font-family: Alcubierre;"}
                 [:table
                  [:tr
-                  [:th "hi"]
-                  [:th "else"]
-                  [:th "something"]]
+                  [:th "Last Name"]
+                  [:th "First Name"]
+                  [:th "Zip"]]
                  [:tr
-                  [:th "1"]
-                  [:th "1"]
-                  [:th "blah blah blah"]]]]]]]]
+                  [:th "Hathaway"]
+                  [:th "Donny"]
+                  [:th "60007"]]
+                 [:tr
+                  [:th "Gaye"]
+                  [:th "Marvin"]
+                  [:th "20001"]]]
+                [:br]
+                "But what does it mean? Analyzing data and searching for actionables is a proficiency and interest."]]]]]
            [:div {:class "experience"}
             [:h2 "experience"]
             [:div {:class "experienceflex"}

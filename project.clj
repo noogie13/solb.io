@@ -1,6 +1,6 @@
 (defproject solb "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+  :description "little website server"
+  :url "https://solb.io"
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [compojure "1.6.1"]
