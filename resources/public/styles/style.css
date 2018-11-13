@@ -1,3 +1,20 @@
+.hobbies{
+    line-height: 12px;
+    color: black;
+    background-color: slategrey;
+    white-space: nowrap;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.hobbies p {
+    display: inline-block;
+    padding-left: 100%;
+    animation: hobbybar 10s linear infinite;
+}
+@keyframes hobbybar {
+    0%   { transform: translate(0, 0); }
+    100% { transform: translate(-100%, 0); }
+}
 * {
     box-sizing: border-box;
 }

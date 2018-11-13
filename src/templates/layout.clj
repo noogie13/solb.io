@@ -30,6 +30,8 @@
            [:h1 "S"
             [:span {:style "font-size: 26px;"}
              "OLOMON"] " BLOCH"]]
+          ;; [:div {:class "hobbies"}
+          ;;  [:p "hobby typist"]]
           [:div {:class "aboutme"}
            [:img {:src "images/me.jpg", :class "face"}]
            [:div {:class "social"}
@@ -81,6 +83,7 @@
                [:h2 "DATA ANALYSIS"]
                [:div {:class "math-text"
                       :style "font-family: Alcubierre;"}
+                " "
                 [:table
                  [:tr
                   [:th "Last Name"]

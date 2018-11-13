@@ -7,7 +7,7 @@
 
 (defroutes app-routes
   (GET "/" [] (layout/homepage))
-  (route/not-found "Not Found"))
+  (route/not-found "404 : hi from sol, where ya going? (text me the answer @666-666-6666)"))
 
 (def app
   (wrap-defaults app-routes site-defaults))
