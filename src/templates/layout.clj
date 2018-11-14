@@ -100,12 +100,12 @@
                 [:br]
                 "But what does it mean? Analyzing data and searching for actionables is a proficiency and interest."]]]]]
            [:div {:class "experience"}
-            [:h2 "experience"]
+            [:h2 "EXPERIENCE"]
             [:div {:class "experienceflex"}
              [:img {:src "images/asseen/fh.png"}]]]
            [:div {:class "asseen"}
-            [:h2 "as seen"]
-            [:div {:class "asseenflex"}
+            [:div {:class "colorlayer"}
+             [:div {:class "break"}]
+             [:h2 "AS SEEN"]
              [:a {:href "http://dailyorange.com/2016/11/super-smash-bros-builds-community-across-central-new-york/"
-                  :target "_blank"}
-              [:img {:src "images/asseen/dailyorange.png"}]]]]]]]))
+                  :target "_blank"}]]]]]]))
