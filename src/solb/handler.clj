@@ -7,6 +7,7 @@
 
 (defroutes app-routes
   (GET "/" [] (layout/homepage))
+  (GET "/googlee5d78e21ce009a63.html" [] (route/files "googlee5d78e21ce009a63.html"))
   (route/not-found "404 : hi from sol, where ya going? (text me the answer @666-666-6666)"))
 
 (def app
