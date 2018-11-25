@@ -5,13 +5,13 @@
             [compojure.route :as route]
             [ring.util.response :as resp]
             [templates.layout :as layout]
+            [templates.blog :as blog]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
 
-(defroutes app-routes
+(defroutes app-routee
   (GET "/" [] (layout/homepage))
-  (GET "/test" [] (str (t/now)))
-  (route/files "/static/")
-  (route/not-found "404 : hi from sol, where ya going? (text me the answer @666-666-6666)"))
+  (GET "/blog/:entry" [entry] (blog/htmlitize entry))
+  (route/not-found "w r u going ?"))
 
 (def app
   (wrap-defaults app-routes site-defaults))
