@@ -1,16 +1,16 @@
 (ns solb.handler
   (:require [compojure.core :refer :all]
             [org.httpkit.server :refer [run-server]]
-            [clj-time.core :as t]
             [compojure.route :as route]
             [ring.util.response :as resp]
             [templates.layout :as layout]
             [templates.blog :as blog]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
 
-(defroutes app-routee
+(defroutes app-routes
   (GET "/" [] (layout/homepage))
   (GET "/blog/:entry" [entry] (blog/htmlitize entry))
+  (GET "/blog" [] (blog/blog-homepage))
   (route/not-found "w r u going ?"))
 
 (def app
