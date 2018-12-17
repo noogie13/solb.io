@@ -1,3 +1,6 @@
+body {
+    background-color: #e3e7ea;
+}
 .hobbies{
     line-height: 12px;
     color: black;
@@ -157,15 +160,32 @@ header {
 }
 .blog {
     background-color: #e3e7ea;
-    justify-content: center;
+ justify-content: center;
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 50%;
     margin: auto;
+}
+.blog p {
+    font-size: 16pt;
+}
+p.date {
+    text-align: right;
+    margin-right: 15%;
+}
+.blog h2 {
+    font-family: "Times New Roman";
+    color: black;
+    margin: 0;
+    padding-top: 20px;
+    padding-left: 0;
+    letter-spacing: 0;
+    font-size: 45px;
+    margin-left: 15%;
 }
 h2 {
     margin: 0;
