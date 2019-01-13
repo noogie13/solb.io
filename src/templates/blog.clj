@@ -1,7 +1,4 @@
 (ns templates.blog
-
-
-
   (:require
    [clojure.core :refer :all]
    [clojure.java.io :as io]
