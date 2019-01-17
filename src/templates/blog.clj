@@ -7,11 +7,13 @@
    [clj-time.local :as l]
    [hiccup.core :refer :all]
    [hiccup.element :refer [image]]
-   [hiccup.page :refer [html5 include-css]]))
+   [hiccup.page :refer [html5 include-css]]
+   [templates.layout :as layout]))
 
 (def time-date-format (f/formatters :basic-date-time))
 (def custom-formatter (f/formatter "h:ma  MM-dd-yyyy"))
 ;; so I don't have to type (f/formatters :basic-date) every time
+
 
 (defn open-entry-file
   [entry]
@@ -19,6 +21,8 @@
     (let [data {}
           seq (line-seq rdr)]
       (assoc data
+             :link (clojure.string/lower-case
+                    (clojure.string/replace (nth seq 0) " " "-"))
              :title (nth seq 0)
              :date (nth seq 1)
              :tags (nth seq 2)
@@ -68,7 +72,6 @@
         newname (clojure.string/replace oldname "drafts" "live")]
     (.renameTo entry (io/file newname))))
 
-
 (defn htmlitize
   [entry-title]
   (let [entry (open-entry entry-title)]
@@ -81,14 +84,7 @@
        [:title "solB"]]
       [:body
        [:header
-        [:div {:class "navbarcontain"}
-         [:div {:class "navbar"}
-          [:a {:href "/"
-               :class "left"}
-           "home"]
-          [:a {:href "#contact"
-               :class "right"}
-           "contact"]]]
+        (layout/navbar)
         [:h1 "S"
          [:span {:style "font-size: 26px;"}
           "OL"] "B"]]
@@ -109,18 +105,16 @@
      [:title "solB"]]
     [:body
      [:header
-      [:div {:class "navbarcontain"}
-       [:div {:class "navbar"}
-        [:a {:href "/"
-             :class "left"}
-         "home"]
-        [:a {:href "#contact"
-             :class "right"}
-         "contact"]]]
+      (layout/navbar)
       [:h1 "S"
        [:span {:style "font-size: 26px;"}
         "OL"] "B"]]
      [:table {:style "width:100%; color:black;"}
-      (doseq [entry-closed (list-live)]
-        (let [entry (open-entry-file entry-closed)]
-          [:tr [:th (entry :title)]]))]]]))
+      (for [i (list-live)]
+        (let [entry-open (open-entry-file i)]
+          [:tr
+           [:th (hiccup.element/link-to
+                 (str "blog/" (entry-open :link))
+                 (entry-open :title))]
+           [:th (f/unparse custom-formatter
+                           (f/parse time-date-format (entry-open :date)))]]))]]]))

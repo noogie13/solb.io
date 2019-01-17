@@ -3,8 +3,19 @@
    [hiccup.core :refer :all]
    [hiccup.page :refer [include-css html5]]))
 
-;; (defn page []
-;;   (html ))
+(defn navbar []
+  (html [:div {:class "navbarcontain"}
+         [:div {:class "navbar"}
+          [:a {:href "/"
+               :class "left"}
+           "home"]
+          [:a {:href "/blog"
+               :class "left"}
+           "blog"]
+          [:a {:href "#contact"
+               :class "right"}
+           "contact"]]]))
+
 
 (defn homepage []
   (html5
@@ -16,14 +27,7 @@
      [:title "solB"]]
     [:body
      [:header
-      [:div {:class "navbarcontain"}
-       [:div {:class "navbar"}
-        [:a {:href "#home"
-             :class "left"}
-         "home"]
-        [:a {:href "#contact"
-             :class "right"}
-         "contact"]]]
+      (navbar)
       [:h1 "S"
        [:span {:style "font-size: 26px;"}
         "OLOMON"] " BLOCH"]]
