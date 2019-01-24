@@ -3,7 +3,8 @@
    [hiccup.core :refer :all]
    [hiccup.page :refer [include-css html5]]))
 
-(defn navbar []
+(defn navbar
+  []
   (html [:div {:class "navbarcontain"}
          [:div {:class "navbar"}
           [:a {:href "/"
@@ -17,7 +18,8 @@
            "contact"]]]))
 
 
-(defn homepage []
+(defn homepage
+  []
   (html5
    (include-css "styles/style.css" "hack-font/hack.css")
    [:html

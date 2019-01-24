@@ -1,5 +1,5 @@
 This is the TITLE of this POST
 20181127T164449.696Z
 these are some tags
-(hiccup.page/html5 [:p "this is the content of this post, here is the stuff that I am saying. This is not long enough, but it will keep going. Maybe I will use quote that will parse into HTML or maybe use some HTML parser to make it easier... Something to use like <i> something liek this </i> by just using the Ctrl-i keybinding." [:i "something"]])
+(hiccup.page/html5 [:p "this is the content of this post, here is the stuff that I am saying. This is not long enough, but it will keep going. Maybe I will use quote that will parse into HTML or maybe use some HTML parser to make it easier... Something to use like <i> something liek this </i> by just using the Ctrl-i add something else?? keybinding." [:i "something"]])
 

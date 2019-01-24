@@ -1,29 +1,38 @@
 (ns solb.handler
   (:require [compojure.core :refer :all]
-            [org.httpkit.server :refer [run-server]]
             [compojure.route :as route]
+            [hiccup.page :refer [html5]]
+            [solb.users :as users]
+            [org.httpkit.server :refer [run-server]]
             [ring.util.response :as resp]
+            [ring.middleware.json :refer [wrap-json-response wrap-json-body]]
+            [ring.middleware.params :refer [wrap-params]]
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults api-defaults]]
             [templates.layout :as layout]
             [templates.blog :as blog]
-            [templates.post :as post]
-            [clojure.java.io :as io]
-            [ring.middleware.defaults :refer
-             [wrap-defaults site-defaults api-defaults]]
-            [ring.middleware.params :refer [wrap-params]]
-            [ring.middleware.multipart-params :refer [wrap-multipart-params]]))
+            [templates.login :as login]
+            [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
+            [clojure.java.io :as io]))
 
 (defroutes app-routes
+  ;; (GET "/" [] (layout/homepage))
   (GET "/" [] (layout/homepage))
   (GET "/blog/:entry" [entry] (blog/htmlitize entry))
   (GET "/blog" [] (blog/blog-homepage))
-  (GET "/test" [] (post/post-page))
-  (POST "/file" {params :params}
-        (let* [temp (get params :file)]
-          (str "size: " (temp :size) "    name: " (temp :filename))))
+  (GET "/login" [] (login/login-page))
+  (POST "/login" [] users/login-user)
+  (GET "/create" [] (login/create-page))
+  (POST "/create" [] users/create-user!)
+  (GET "/admin" [] (html5 "hi"))
   (route/not-found "w r u going ?"))
 
 (def app
-  (wrap-defaults app-routes site-defaults))
+  (as-> app-routes $
+    (wrap-defaults $ site-defaults)
+    (wrap-authorization $ users/backend)
+    (wrap-authentication $ users/backend)
+    (wrap-json-body $ {:pretty :false})
+    (wrap-json-response $ {:keywords? true :bigdecimals? true})))
 
 (defonce ^:private server (atom nil))
 
