@@ -1,7 +1,7 @@
 (ns templates.db
   (:require
    [honeysql.core :as sql]
-   [honeysql.helpers :as helpers]
+   [honeysql.helpers :refer :all :as helpers]
    [clojure.java.jdbc :as jdbc]))
 
 (def pg-db {:dbtype "postgresql"
@@ -10,6 +10,7 @@
             :port "5432"
             :user "blogger"
             :password "password"})
+
 
 ;; (def first (jdbc/create-table-ddl :posts [[:title "VARCHAR(255)"]
 ;;                                           [:status "bool"]

@@ -1,3 +1,17 @@
+@font-face {
+    font-family: "Alcubierre";
+    src: url("fonts/Alcubierre.ttf") format("truetype"), url("fonts/Alcubierre.woff") format("woff");
+}
+@font-face {
+    font-family: "Computer Modern";
+    sre: url("fonts/cmunbx.ttf") format("truetype"), url("fonts/cmunbx.ttf") format("woff");
+}
+@font-face {
+    font-family: 'Hack';
+    src: url("fonts/hack-regular.woff") format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
 body {
     background-color: #e3e7ea;
 }
@@ -38,14 +52,6 @@ body, html {
     height: 100%;
     margin: 0;
     font-size: 100%;
-}
-@font-face {
-    font-family: "Alcubierre";
-    src: url("Alcubierre.ttf") format("truetype"), url("Alcubierre.woff") format("woff");
-}
-@font-face {
-    font-family: "Computer Modern";
-    src: url("computer-modern/Serif/cmunbx.ttf") format("truetype");
 }
 h1 {
     margin: 0;
