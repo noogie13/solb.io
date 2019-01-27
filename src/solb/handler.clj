@@ -19,6 +19,7 @@
   (GET "/" [] (layout/homepage))
   (GET "/blog/:entry" [entry] (blog/htmlitize entry))
   (GET "/blog" [] (blog/blog-homepage))
+  (GET "/blog/tags/:tag" [tag] (blog/tag-page tag))
   (GET "/login" [] (login/login-page))
   (POST "/login" [] users/login-user)
   (GET "/create" [] (login/create-page))
@@ -28,11 +29,7 @@
 
 (def app
   (as-> app-routes $
-    (wrap-defaults $ site-defaults)
-    (wrap-authorization $ users/backend)
-    (wrap-authentication $ users/backend)
-    (wrap-json-body $ {:pretty :false})
-    (wrap-json-response $ {:keywords? true :bigdecimals? true})))
+    (wrap-defaults $ site-defaults)))
 
 (defonce ^:private server (atom nil))
 

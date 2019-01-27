@@ -66,7 +66,7 @@
                {:style "background-image:url('images/backgrounds/mars2.jpg'); font-family: 'Computer Modern', serif;"}
          [:div.darken
           [:div.break]
-          [:h2 {:style "font-family:'Computer Modern', serif;"}
+          [:h2 {:style "font-family:'Computer Modern', serif; font-weight: normal;"}
            "MATHEMATICS"]
           [:div.math-text
            "Studying applied mathematics, enjoys diving into questions of not just how do we solve a problem, but how can we solve it " [:i "optimally."]]]]
@@ -78,10 +78,10 @@
           [:div.math-text
                  {:style "font-family: Alcubierre;"}
            " "
-           [:table
-            [:tr [:th "Last Name"] [:th "First Name"] [:th "Zip"]]
-            [:tr [:th "Hathaway"] [:th "Donny"] [:th "60007"]]
-            [:tr [:th "Gaye"] [:th "Marvin"] [:th "20001"]]]
+           [:table.home
+            [:tr.home [:th.home "Last Name"] [:th.home "First Name"] [:th.home "Zip"]]
+            [:tr.home [:th.home "Hathaway"] [:th.home "Donny"] [:th.home "60007"]]
+            [:tr.home [:th.home "Gaye"] [:th.home "Marvin"] [:th.home "20001"]]]
            [:br]
            "But what does it mean? Analyzing data and searching for actionables is a proficiency and interest."]]]]]
       [:div.experience

@@ -1,6 +1,6 @@
 (ns solb.users
   (:require
-   [clj-time.core :as time]
+   [clj-time.core :as t]
    [clojure.java.io :as io]
    [clojure.java.jdbc :as jdbc]
    [ring.util.response :refer [response redirect]]
@@ -9,15 +9,23 @@
    [templates.db :refer [pg-db]]
    [hiccup.page :refer [html5]]
    [buddy.core.nonce :as nonce]
-   [buddy.sign.jwe :as jwe]
+   [buddy.core.keys :as keys]
+   [buddy.sign.jwt :as jwt]
    [buddy.auth.accessrules :refer [restrict]]
    [buddy.auth :refer [authenticated? throw-unauthorized]]
-   [buddy.auth.backends.token :refer [jwe-backend]]
+   [buddy.auth.backends.token :refer [jws-backend]]
    [buddy.hashers :as hashers]))
 
 (def secret (nonce/random-bytes 32))
 
-(def backend (jwe-backend {:secret secret :options {:alg :a256kw :enc :a128gcm}}))
+;; "es256"
+
+(def privkey (keys/private-key "src/solb/ecprivkey.pem"))
+(def pubkey (keys/public-key "src/solb/ecpubkey.pem"))
+
+(def backend (jws-backend {:secret secret
+                           :options {:alg :rsa-oaep
+                                     :enc :a256cbc-hs512}}))
 
 (defn create-user!
   "allows duplicates, so be careful here :>"
@@ -37,8 +45,8 @@
   "assoc user to session"
   [request]
   (let* [params (:params request)
-         username (params :username)
-         password (params :password)
+         username (:username params)
+         password (:password params)
          session (:session request)]
     (let [query (first (jdbc/query pg-db (-> (select :*)
                                              (from :users)
@@ -47,8 +55,8 @@
       (if (not (nil? query))
         (if (hashers/check password (:password query))
           (let [claims {:user (keyword username)
-                        :exp (time/plus (time/now) (time/seconds 3600))}
-                token (jwe/encrypt claims secret {:alg :a256kw :enc :a128gcm})]
-            (html5 (str {:token token})))
+                        :exp (t/plus (t/now) (t/seconds 3600))}
+                token (jwt/sign claims privkey {:alg :es256})]
+            (html5 token))
           (html5 "no"))
         (html5 "no")))))
