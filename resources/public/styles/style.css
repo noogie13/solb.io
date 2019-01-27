@@ -4,12 +4,19 @@
 }
 @font-face {
     font-family: "Computer Modern";
-    sre: url("fonts/cmunbx.ttf") format("truetype"), url("fonts/cmunbx.ttf") format("woff");
+    src: url("fonts/cmunbx.ttf") format("truetype"), url("fonts/cmunbx.ttf") format("woff");
 }
 @font-face {
     font-family: 'Hack';
     src: url("fonts/hack-regular.woff") format('woff');
     font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Jacques Francois';
+    src: url('fonts/JacquesFrancois-Regular.woff2') format('woff2'),
+         url('fonts/JacquesFrancois-Regular.woff') format('woff');
+    font-weight: normal;
     font-style: normal;
 }
 body {
@@ -35,12 +42,12 @@ body {
 * {
     box-sizing: border-box;
 }
-table {
+.home table {
     border: 1px solid white;
     border-collapse: collapse;
     width: 100%;
 }
-td, th {
+.home td, th {
     border: 1px solid white;
     padding: 5px;
     text-align: left;
@@ -164,6 +171,52 @@ header {
     width: 100%;
     margin: auto;
 }
+.entry a {
+    text-decoration: none;
+    color: black;
+    letter-spacing: 1px;
+    font-family: 'Jacques Francois';
+    font-size: 36px;
+    font-weight: normal;
+    font-style: normal;
+    color: black;
+}
+.entry a:hover {
+    color: slategrey;
+    font-size: 37px;
+}
+.tags {
+    color: #795C9F;
+    height: 14px;
+    margin: 4px 0 0 0;
+}
+.tags a {
+    color: #795C9F;
+    margin: 0 6px 0 0;
+    font-size: 15px;
+}
+.tags a:hover {
+    font-size: 15px;
+}
+.bloglist {
+    margin-top: 30px;
+    margin-left: 35%;
+    width: 40%;
+    display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;x;
+    justify-content: center;
+    flex-direction: column;
+}
+.forward {
+    color: rgba(0,0,0,.7);
+    font-family: "Jacques Francois";
+    font-weight: normal;
+    font-size: 16px;
+    text-align: center;
+}
 .blog {
     background-color: #e3e7ea;
     justify-content: center;
@@ -173,26 +226,28 @@ header {
     display: -webkit-flex;
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 40%;
     margin: auto;
 }
 .blog p {
     font-size: 16pt;
 }
 p.date {
-    font-size: 20px;
+    color: rgba(0,0,0,.5);
+    font-family: "Jacques Francois";
+    font-weight: normal;
+    font-size: 15px;
     text-align: right;
-    margin-right: 15%;
 }
 .blog h2 {
-    font-family: "Times New Roman";
+    font-family: "Jacques Francois";
+    font-weight: normal;
     color: black;
     margin: 0;
     padding-top: 45px;
     padding-left: 0;
     letter-spacing: 0;
-    font-size: 32px;
-    margin-left: 15%;
+    font-size: 50px;
 }
 h2 {
     margin: 0;
@@ -306,6 +361,7 @@ h2 {
     color: white;
     background-color: rgba(30,30,30,.65);
     font-family: Hack, monospace;
+    font-weight: normal;
     text-align: left;
     position: block;
 }
@@ -336,6 +392,7 @@ h2 {
     margin-left: 25px;
     display: block;
     font-size: 13px;
+    font-weight: normal;
     color: white;
     background-color: rgba(30,30,30,.65);
     text-align: left;
@@ -396,6 +453,10 @@ h2 {
 @media only screen and (max-width: 1100px) {
     .blog {
         width: 80%;
+    }
+    .bloglist {
+        width: 80%;
+        margin-left: 10%;
     }
 }
 @media screen and (max-width: 900px) {
