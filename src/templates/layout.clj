@@ -31,9 +31,8 @@
       [:h1 "S"
        [:span {:style "font-size: 26px;"}
         "OLOMON"] " BLOCH"]]
-     [:div.hobbies
-      [:p "hobby typist"]]
-     [:div.aboutme
+     ;; [:div.hobbies
+     ;;  [:p "hobby typist"]]
       [:img.face {:src "images/me.jpg"}]
       [:div.social
        (elem/link-to {:target "_blank"} "https://www.linkedin.com/in/solomon-bloch-151309167/"
@@ -93,4 +92,4 @@
         [:div.break]
         [:h2 "AS SEEN"]
         (elem/link-to {:target "_blank"}
-                      "http://dailyorange.com/2016/11/super-smash-bros-builds-community-across-central-new-york/")]]]]]))
+                      "http://dailyorange.com/2016/11/super-smash-bros-builds-community-across-central-new-york/")]]]]))
