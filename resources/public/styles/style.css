@@ -171,37 +171,39 @@ header {
     width: 100%;
     margin: auto;
 }
-.entry a {
+.entry {
     text-decoration: none;
     color: black;
     letter-spacing: 1px;
     font-family: 'Jacques Francois';
-    font-size: 36px;
+    font-size: 38px;
     font-weight: normal;
     font-style: normal;
     color: black;
+    height: auto;
+    margin-top: 15px;
 }
-.entry a:hover {
+.entry:hover {
     color: slategrey;
-    font-size: 37px;
 }
 .tags {
     color: #795C9F;
-    height: 14px;
-    margin: 4px 0 0 0;
+    text-align: right;
+    margin: -13px;
 }
 .tags a {
+    margin: 0 4px 0;
     color: #795C9F;
-    margin: 0 6px 0 0;
+    text-decoration: none;
     font-size: 15px;
 }
 .tags a:hover {
-    font-size: 15px;
+    color: slategrey;
 }
 .bloglist {
+    margin: auto;
     margin-top: 30px;
-    margin-left: 35%;
-    width: 40%;
+    width: 35%;
     display: flex;
     display: -webkit-box;
     display: -moz-box;
