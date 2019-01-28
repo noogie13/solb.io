@@ -77,12 +77,11 @@
      [:div.bloglist
       (for [i (reverse post-list)]
         [:div.entry
-         [:a.entry {:href (str "blog/" (:link i))}
-          [:div
-           (:title i)]]
+          [:a.entry {:href (str "/blog/" (:link i))}
+           (:title i)]
          [:div.tags
           (for [tag (str/split (:tags i) #" ")]
-            (elem/link-to (str "blog/tags/" tag)
+            (elem/link-to (str "/blog/tags/" tag)
                           (str ":" tag)))]
          [:p.forward (:forward i)]
          [:p.date (f/unparse (f/formatters :date)
@@ -123,6 +122,10 @@
           "OL"] "B"]]
        [:div.blog
         [:h2 (:title entry)]
+        [:div.tags
+         (for [tag (str/split (:tags entry) #" ")]
+           (elem/link-to (str "/blog/tags/" tag)
+                         (str ":" tag)))]
         [:p.date (f/unparse (f/formatters :date)
                             (tc/from-sql-time (:date entry)))]
         [:p (:content entry)]]]])))
