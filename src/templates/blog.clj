@@ -5,14 +5,25 @@
             [clojure.core :refer :all]
             [clojure.java.jdbc :as jdbc]
             [hiccup.element :as elem]
-            [hiccup.page :refer [html5 include-css]]
+            [hiccup.page :refer [html5 include-css include-js]]
             [honeysql.core :as sql]
             [honeysql.helpers :as helpers :refer :all]
             [templates.db :as db]
             [templates.layout :as layout]
+            [glow.core :as glow]
             [clojure.string :as str]))
 
-(defn make-draft
+(defn content-format
+  [content]
+  (-> content
+      (str/replace #"(?is)```(.*)```"
+                   (str "<pre><code>" "$1" "</pre></code>"))
+      (str/replace #"`(.*)`"
+                   (str "<span class=\"tidbit\">" "$1" "</span>"))
+      (str )))
+
+
+(defn make-draft!
   "make a new post, set as a draft"
   [& {:keys [title tags content forward]
       :or {title "no title"
@@ -77,8 +88,8 @@
      [:div.bloglist
       (for [i (reverse post-list)]
         [:div.entry
-          [:a.entry {:href (str "/blog/" (:link i))}
-           (:title i)]
+         [:a.entry {:href (str "/blog/" (:link i))}
+          (:title i)]
          [:div.tags
           (for [tag (str/split (:tags i) #" ")]
             (elem/link-to (str "/blog/tags/" tag)
@@ -108,7 +119,7 @@
                                                       entry-title])
                                               sql/format)))]
     (html5
-     (include-css "/styles/style.css")
+     (include-css "/styles/style.css" )
      [:html
       [:head
        [:meta {:name "viewport"
@@ -129,3 +140,33 @@
         [:p.date (f/unparse (f/formatters :date)
                             (tc/from-sql-time (:date entry)))]
         [:p (:content entry)]]]])))
+
+(defn htmltest
+  "make a post html (fill up title content etc)"
+  []
+  (let [entry {:title "clojure blog 1: hiccup and ring",
+               :tags "these are tags",
+               :date (tc/to-sql-time (t/now)),
+               :content (content-format "Clojure blogging; a  bb")}]
+    (html5
+     (include-css "/styles/style.css")
+     [:html
+      [:head
+       [:meta {:name "viewport"
+               :content "width=device-width, initial-scale=1.0"}]
+       [:title "solB"]]
+      [:body
+       [:header
+        (layout/navbar)
+        [:h1 "S"
+         [:span {:style "font-size: 26px;"}
+          "OL"] "B"]]
+       [:div.blog
+        [:h2 (:title entry)]
+        [:div.tags
+         (for [tag (str/split (:tags entry) #" ")]
+           (elem/link-to (str "/blog/tags/" tag)
+                         (str ":" tag)))]
+        [:p.date (f/unparse (f/formatters :date)
+                            (tc/from-sql-time (:date entry)))]
+        [:div.content (:content entry)]]]])))

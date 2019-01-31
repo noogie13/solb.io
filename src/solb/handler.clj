@@ -25,6 +25,7 @@
   (GET "/create" [] (login/create-page))
   (POST "/create" [] users/create-user!)
   (GET "/admin" [] (html5 "hi"))
+  (GET "/htmltest" [] (blog/htmltest))
   (route/not-found "w r u going ?"))
 
 (def app
