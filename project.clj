@@ -11,7 +11,9 @@
                  [ring/ring-json "0.4.0"]
                  [org.clojure/java.jdbc "0.7.8"]
                  [org.postgresql/postgresql "42.2.5.jre7"]
-                 [honeysql "0.9.4"]]
+                 [honeysql "0.9.4"]
+                 [venantius/glow "0.1.5"]
+                 [figwheel "0.5.18"]]
   :main solb.handler
   :plugins [[lein-ring "0.12.4"]
             [cider/cider-nrepl "0.18.0"]]
