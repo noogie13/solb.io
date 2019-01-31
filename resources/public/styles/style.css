@@ -1,4 +1,8 @@
 @font-face {
+    font-family: "Libre Baskerville";
+    src: url("fonts/LibreBaskerville-Regular.ttf") format("truetype");
+}
+@font-face {
     font-family: "Alcubierre";
     src: url("fonts/Alcubierre.ttf") format("truetype"), url("fonts/Alcubierre.woff") format("woff");
 }
@@ -189,7 +193,7 @@ header {
 .tags {
     color: #795C9F;
     text-align: right;
-    margin: -13px;
+    margin: -3px;
 }
 .tags a {
     margin: 0 4px 0;
@@ -250,6 +254,11 @@ p.date {
     padding-left: 0;
     letter-spacing: 0;
     font-size: 50px;
+}
+.content {
+    font-family: "Libre Baskerville";
+    font-weight: normal;
+    color: black;
 }
 h2 {
     margin: 0;
@@ -352,6 +361,12 @@ h2 {
 }
 .terminal:hover {
     background-color: rgba(30,30,30,.9);
+}
+pre code {
+    background-color: #eee;
+    border: 1px solid #999;
+    display: block;
+    padding: 20px;
 }
 .terminal {
     margin: auto;
