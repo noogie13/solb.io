@@ -1,6 +1,8 @@
 @font-face {
-    font-family: "Libre Baskerville";
-    src: url("fonts/LibreBaskerville-Regular.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Raleway";
+    src: url("fonts/Raleway/Raleway-Regular.ttf");
 }
 @font-face {
     font-family: "Alcubierre";
@@ -24,7 +26,7 @@
     font-style: normal;
 }
 body {
-    background-color: #e3e7ea;
+    /* background-color: #e3e7ea; */
 }
 .hobbies{
     line-height: 12px;
@@ -46,17 +48,16 @@ body {
 * {
     box-sizing: border-box;
 }
-.home table {
+table {
     border: 1px solid white;
     border-collapse: collapse;
     width: 100%;
 }
 .home td, th {
     border: 1px solid white;
-    padding: 5px;
+    /* padding: 5px; */
     text-align: left;
 }
-
 body, html {
     /* background-color: #e3e7ea; */
     -webkit-text-size-adjust: 100%;
@@ -67,45 +68,66 @@ body, html {
 h1 {
     margin: 0;
     padding-top: 50px;
-    font-family: "Alcubierre", sans-serif;
+    font-family: "Raleway", sans-serif;
     letter-spacing: 5px;
     font-size: 35px;
     text-align: center;
     color: white;
 }
 .navbarcontain {
-    width: 100%;
+    width: 80%;
+    max-width: 1150px;
     display: block;
     margin: auto;
-    position: fixed;
+    /* position: fixed; */
     /* background-color: #2f363d; */
-    background-color: rgb(30,30,30);
-    margin-bottom: 50px;
-    top: 0;
+    /* background-color: rgb(30,30,30); */
+    /* padding-left: 10px; */
+    /* padding-right: 10px; */
+    /* top: 0; */
 }
 .navbar {
     display: block;
+    font-family: "Raleway", sans-serif;
+    /* margin-bottom: 50px; */
     /* background-color: #2f363d; */
-    background-color: rgb(30,30,30);
+    /* background-color: rgb(30,30,30); */
     overflow: hidden;
     margin: auto;
-    max-width: 750px;
+    /* max-width: 850px; */
     top: 0;
 }
 .navbar a.left {
-    font-family: "Alcubierre", sans-serif;
     float: left;
     display: block;
-    color: white;
+    color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
+.navbarname {
+    font-size: 35px;
+    padding-top: 5px;
+    /* padding-left: 15%; */
+    /* padding: 14px 16px; */
+    display: inline-block;
+}
+.navbarname a:link {
+    text-decoration: none;
+    color: black;
+}
+.navbarname a:visited {
+    text-decoration: none;
+    color: black;
+}
+.navbarname a:active {
+    text-decoration: none;
+    color: black;
+}
 .navbar a.right {
-    font-family: "Alcubierre", sans-serif;
     float: right;
     display: block;
-    color: white;
+    color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -116,32 +138,46 @@ h1 {
 }
 header {
     /* background-color: #2f363d; */
-    background-color: rgb(30,30,30);
-    padding-bottom: 20px;
+    /* background-color: rgb(30,30,30); */
+    padding-bottom: 10px;
+}
+.first {
+    justify-content: center;
+    width: 80%;
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+}
+.face h1 {
+    color: black;
 }
 .face {
-    padding: 20px;
-    /* -webkit-filter: blur(5px); */
     display: flex;
+    flex-direction: column;
+}
+img.face {
     margin: auto;
     object-fit: cover;
-    border-radius: 50%;
-    height: 55vw;
-    width: 55vw;
-    min-height: 350px;
-    min-width: 350px;
-    max-height: 550px;
-    max-width: 550px;
+    height: 40vw;
+    width: 40vw;
+    /* min-height: 350px; */
+    /* min-width: 350px; */
+    max-height: 450px;
+    max-width: 450px;
 }
-.icons {
-    width: 40px;
-    height: 40px;
+.social img {
+    width: 5vw;
+    height: 5vw;
+    min-height: 20px;
+    min-width: 20px;
+    max-height: 40px;
+    max-width: 40px;
     display: inline-block;
     verticle-align: middle;
     margin: auto;
 }
 .social {
-    margin: auto;
+    margin: 5px;
     text-align: center;
     align: center;
 }
@@ -156,15 +192,16 @@ header {
     opacity: .5;
 }
 .strengthflex {
+    /* padding-top: 50px; */
+    /* padding-bottom: 50px; */
     /* background-color: #a4b6c0; */
-    background-color: rgb(30,30,30);
+    /* background-color: rgb(30,30,30); */
     align-items: center;
     justify-content: center;
     display: flex;
     flex-wrap: wrap;
 }
 .aboutme {
-    background-color: #e3e7ea;
     justify-content: center;
     display: -webkit-box;
     display: -moz-box;
@@ -172,7 +209,8 @@ header {
     display: -webkit-flex;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 80%;
+    max-width: 1200px;
     margin: auto;
 }
 .entry {
@@ -180,7 +218,8 @@ header {
     color: black;
     letter-spacing: 1px;
     font-family: 'Jacques Francois';
-    font-size: 38px;
+    font-size: 4vw;
+    max-font-size: 20px;
     font-weight: normal;
     font-style: normal;
     color: black;
@@ -191,23 +230,40 @@ header {
     color: slategrey;
 }
 .tags {
+    display: block;
+    float: left;
     color: #795C9F;
-    text-align: right;
-    margin: -3px;
+    /* width: 80%; */
+    /* text-align: right; */
+    /* margin-top: -6px; */
 }
 .tags a {
     margin: 0 4px 0;
     color: #795C9F;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 3vw;
 }
 .tags a:hover {
     color: slategrey;
 }
-.bloglist {
+.blogonly {
     margin: auto;
-    margin-top: 30px;
-    width: 35%;
+    width: 80%;
+    max-width: 1150px;
+    display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;x;
+    justify-content: center;
+    flex-direction: column;
+}
+.bloglist {
+    padding-left: 14px;
+    margin: auto;
+    /* margin-top: 30px; */
+    width: 55%;
+    max-width: 1200px;
     display: flex;
     display: -webkit-box;
     display: -moz-box;
@@ -220,11 +276,10 @@ header {
     color: rgba(0,0,0,.7);
     font-family: "Jacques Francois";
     font-weight: normal;
-    font-size: 16px;
+    font-size: 3vw;
     text-align: center;
 }
 .blog {
-    background-color: #e3e7ea;
     justify-content: center;
     display: -webkit-box;
     display: -moz-box;
@@ -232,18 +287,26 @@ header {
     display: -webkit-flex;
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 65%;
+    max-width: 1100px;
     margin: auto;
 }
 .blog p {
     font-size: 16pt;
 }
-p.date {
+.datetagsflex {
+    display: flex;
+}
+.date {
+    float: right;
+    display: block;
+    margin-top: 3px;
+    margin-left: auto;
+    float: right;
     color: rgba(0,0,0,.5);
     font-family: "Jacques Francois";
     font-weight: normal;
-    font-size: 15px;
-    text-align: right;
+    font-size: 3vw;
 }
 .blog h2 {
     font-family: "Jacques Francois";
@@ -264,7 +327,7 @@ h2 {
     margin: 0;
     padding-top: 20px;
     padding-left: 30px;
-    font-family: "Alcubierre", sans-serif;
+    font-family: "Raleway", sans-serif;
     letter-spacing: 3px;
     font-size: 25px;
     color: white;
@@ -289,7 +352,9 @@ h2 {
     /* padding: 40px; */
     /* height: 18vw; */
     width: 33.333%;
+    min-width: 340px;
     height: 39vw;
+    min-height: 300px;
     max-height: 370px;
     color: rgba(0,0,0,0);
 }
@@ -431,9 +496,6 @@ pre code {
 .strengthflex a:active {
     text-decoration: none;
 }
-.experience {
-    background-color: #e3e7ea;
-}
 .experienceflex {
     padding: 25px;
     align-items: center;
@@ -467,21 +529,42 @@ pre code {
     width: 100%;
     height: 100%;
 }
-@media only screen and (max-width: 1100px) {
+@media only screen and (max-width: 900px) {
     .blog {
         width: 80%;
     }
-    .bloglist {
-        width: 80%;
-        margin-left: 10%;
+    .navbarname {
+        font-size: 20px;
+        padding-top: 10px;
     }
-}
-@media screen and (max-width: 900px) {
-    .abouticon {
+    .navbar a {
+        font-size: 14px;
+    }
+    .first {
         width: 100%;
-        height: 380px;
+        flex-direction: column;
+    }
+    .bloglist {
+        width: 90%;
     }
     .asseen {
-        background-position: 70% 60%;
+        background-position: 75% 60%;
+    }
+}
+@media only screen and (min-width: 901px) {
+    .forward {
+        font-size: 19px;
+    }
+    .entry {
+        font-size: 23px;
+    }
+    .date {
+        font-size: 19px;
+    }
+    .tags a {
+        font-size: 19px;
+    }
+    .tags {
+        font-size: 19px;
     }
 }
