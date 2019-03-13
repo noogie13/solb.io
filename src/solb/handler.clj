@@ -5,32 +5,34 @@
             [solb.users :as users]
             [org.httpkit.server :refer [run-server]]
             [ring.util.response :as resp]
-            [ring.middleware.json :refer [wrap-json-response wrap-json-body]]
+            [ring.middleware.cookies :refer [wrap-cookies]]
             [ring.middleware.params :refer [wrap-params]]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults api-defaults]]
             [templates.layout :as layout]
             [templates.blog :as blog]
             [templates.login :as login]
-            [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
             [clojure.java.io :as io]))
+(defn print-request
+  [request]
+  (html5 request))
 
 (defroutes app-routes
-  ;; (GET "/" [] (layout/homepage))
   (GET "/" [] (layout/homepage))
-  (GET "/blog/:entry" [entry] (blog/htmlitize entry))
-  (GET "/blog" [] (blog/blog-homepage))
-  (GET "/blog/tags/:tag" [tag] (blog/tag-page tag))
+  (GET "/aboutme" [] (layout/aboutme))
+  (GET "/blog/:entry" [entry] (layout/htmlitize entry))
+  (GET "/blog" [] (layout/blog-homepage))
+  (GET "/blog/tags/:tag" [tag] (layout/tag-page tag))
   (GET "/login" [] (login/login-page))
   (POST "/login" [] users/login-user)
-  (GET "/create" [] (login/create-page))
-  (POST "/create" [] users/create-user!)
-  (GET "/admin" [] (html5 "hi"))
-  (GET "/htmltest" [] (blog/htmltest))
-  (route/not-found "w r u going ?"))
+  (GET "/tester" [] users/tester)
+  (GET "/prntreq" [] print-request)
+  (GET "/admin" [] )
+  (route/not-found "where are we going? "))
 
 (def app
-  (as-> app-routes $
-    (wrap-defaults $ site-defaults)))
+  (-> app-routes
+      (wrap-defaults site-defaults)
+      (wrap-cookies)))
 
 (defonce ^:private server (atom nil))
 
