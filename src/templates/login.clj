@@ -62,11 +62,3 @@
                     "pass"
                     (form/password-field "password")
                     (form/submit-button "submit?"))]]]))
-
-(defn post-page []
-  (html5
-   (form/form-to {:enctype "multipart/form-data"}
-                 [:post "/file"]
-                 (anti/anti-forgery-field)
-                 (form/file-upload "file")
-                 (form/submit-button "submit?"))))
