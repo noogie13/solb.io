@@ -2,15 +2,17 @@
   (:require
    [hiccup.core :refer :all]
    [hiccup.element :as elem]
+   [hiccup.form :as form]
+   [ring.util.anti-forgery :as anti]
    [clojure.string :as str]
    [clj-time.format :as f]
    [clj-time.coerce :as tc]
-   [templates.db :as db]
+   [backend.db :as db]
    [honeysql.core :as sql]
    [honeysql.helpers :as helpers :refer :all]
    [clojure.java.jdbc :as jdbc]
-   [hiccup.page :refer [include-css html5]]
-   [templates.blog :as blog]))
+   [hiccup.page :refer [include-css include-js html5]]
+   [backend.blog :as blog]))
 
 (defn navbar
   []
@@ -20,8 +22,7 @@
           [:a.right {:href "/blog"} "Blog"]
           [:a.right {:href "/aboutme"} "About Me"]
           [:div.navbarname [:a {:href "/"}
-                            "Solomon Bloch"]]
-          ]]))
+                            "Solomon Bloch"]]]]))
 
 
 (defn homepage
@@ -66,8 +67,8 @@
        ;; [:div.more
        ;;  [:a {:href "/blog"}
        ;;   [:div.morewords "↓ see more posts ↓"]]]
-       ]]
-     ]]))
+       ]]]]))
+
 (defn aboutme
   []
   (html5
@@ -128,100 +129,3 @@
                       "http://dailyorange.com/2016/11/super-smash-bros-builds-community-across-central-new-york/")]]]]]))
 
 
-(defn blog-post-html
-  "takes a list of blog entries and turns it into html"
-  [post-list]
-  (html5
-   (include-css "/styles/style.css")
-   [:html
-    [:head
-     [:meta {:name "viewport"
-             :content "width=device-width, initial-scale=1.0"}]
-     [:title "solB"]]
-    [:body
-     [:header
-      (navbar)]
-     [:div.blogonly
-      (for [i (reverse post-list)]
-        [:div.entry
-         [:a.entry {:href (str "/blog/" (:link i))}
-          (:title i)]
-         [:div.datetagsflex
-          [:div.tags
-           (for [tag (str/split (:tags i) #" ")]
-             (elem/link-to (str "/blog/tags/" tag)
-                           (str ":" tag)))]
-          [:div.date (f/unparse (f/formatters :date)
-                                (tc/from-sql-time (:date i)))]]
-         [:p.forward (:forward i)]
-         ])]]]))
-
-
-(defn blog-homepage
-  []
-  (blog-post-html (blog/live-posts)))
-
-(defn tag-page
-  "page that shows posts with the same tag"
-  [tag]
-  (blog-post-html (blog/like-tag tag)))
-
-
-
-(defn htmlitize
-  "make a post html (fill up title content etc)"
-  [entry-title]
-  (let [entry (first (jdbc/query db/pg-db (-> (select :*)
-                                              (from :posts)
-                                              (where [:= :link
-                                                      entry-title])
-                                              sql/format)))]
-    (html5
-     (include-css "/styles/style.css")
-     [:html
-      [:head
-       [:meta {:name "viewport"
-               :content "width=device-width, initial-scale=1.0"}]
-       [:title "solB"]]
-      [:body
-       [:header (navbar)]
-       [:div.blog
-        [:h2 (:title entry)]
-        [:div.datetagsflex
-         [:div.tags
-          (for [tag (str/split (:tags entry) #" ")]
-            (elem/link-to (str "/blog/tags/" tag)
-                          (str ":" tag)))]
-         [:div.date (f/unparse (f/formatters :date)
-                             (tc/from-sql-time (:date entry)))]]
-        [:p (:content entry)]]]])))
-
-;; (defn htmltest
-;;   "make a post html (fill up title content etc)"
-;;   []
-;;   (let [entry {:title "clojure blog 1: hiccup and ring",
-;;                :tags "these are tags",
-;;                :date (tc/to-sql-time (t/now)),
-;;                :content (content-format "Not that there aren't a million tutorials of this already, but let's examine some of the basics of Clojure's beautiful HTML ```something```")}]
-;;     (html5
-;;      (include-css "/styles/style.css")
-;;      [:html
-;;       [:head
-;;        [:meta {:name "viewport"
-;;                :content "width=device-width, initial-scale=1.0"}]
-;;        [:title "solB"]]
-;;       [:body
-;;        [:header
-;;         (navbar)
-;;         [:h1 "S"
-;;          [:span {:style "font-size: 26px;"}
-;;           "OL"] "B"]]
-;;        [:div.blog
-;;         [:h2 (:title entry)]
-;;         [:div.tags
-;;          (for [tag (str/split (:tags entry) #" ")]
-;;            (elem/link-to (str "/blog/tags/" tag)
-;;                          (str ":" tag)))]
-;;         [:p.date (f/unparse (f/formatters :date)
-;;                             (tc/from-sql-time (:date entry)))]
-;;         [:div.content (:content entry)]]]])))
