@@ -230,6 +230,7 @@ img.face {
     color: slategrey;
 }
 .tags {
+    outline: 0px;
     display: block;
     float: left;
     color: #795C9F;
@@ -273,6 +274,7 @@ img.face {
     flex-direction: column;
 }
 .forward {
+    outline: 0px;
     color: rgba(0,0,0,.7);
     font-family: "Jacques Francois";
     font-weight: normal;
@@ -291,8 +293,16 @@ img.face {
     max-width: 1100px;
     margin: auto;
 }
-.blog p {
-    font-size: 16pt;
+.content {
+    outline: 0px;
+    margin-top: 20px;
+    font-size: 20px;
+    /* white-space: pre; */
+    white-space: pre-wrap;      /* CSS3 */
+    white-space: -moz-pre-wrap; /* Firefox */
+    white-space: -pre-wrap;     /* Opera <7 */
+    white-space: -o-pre-wrap;   /* Opera 7 */
+    word-wrap: break-word;      /* IE */
 }
 .datetagsflex {
     display: flex;
@@ -324,6 +334,7 @@ img.face {
     color: black;
 }
 h2 {
+    outline: 0px;
     margin: 0;
     padding-top: 20px;
     padding-left: 30px;
