@@ -127,5 +127,3 @@
         [:h2 "AS SEEN"]
         (elem/link-to {:target "_blank"}
                       "http://dailyorange.com/2016/11/super-smash-bros-builds-community-across-central-new-york/")]]]]]))
-
-
