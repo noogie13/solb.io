@@ -25,6 +25,13 @@
 ;; (def backend (jws-backend {:secret privkey
 ;;                            :options {:alg :es256}}))
 
+(defn create-user!!
+  [name username password]
+  (jdbc/execute! pg-db (-> (insert-into :users)
+                           (columns :username :password :name)
+                           (values
+                            [[username password name]])
+                           sql/format)))
 (defn create-user!
   "allows duplicates, so be careful here :>"
   [request]
@@ -63,9 +70,9 @@
 (defmacro sol?
   [request next]
   `(if (= "sol" ((jwt/unsign (((~request :cookies) "token") :value)
-                            pubkey {:alg :es256}) :user))
-    ~next
-    (html5 "not authorized --")))
+                             pubkey {:alg :es256}) :user))
+     ~next
+     (html5 "not authorized --")))
 
 (defn tester
   [request]
