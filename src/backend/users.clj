@@ -60,11 +60,11 @@
         "no")
       "no")))
 
-(defn sol?
+(defmacro sol?
   [request next]
-  (if (= "sol" ((jwt/unsign (((request :cookies) "token") :value)
+  `(if (= "sol" ((jwt/unsign (((~request :cookies) "token") :value)
                             pubkey {:alg :es256}) :user))
-    (next)
+    ~next
     (html5 "not authorized --")))
 
 (defn tester
