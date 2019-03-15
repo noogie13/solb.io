@@ -24,16 +24,17 @@
 (defroutes app-routes
   (GET "/" [] (layout/homepage))
   (GET "/aboutme" [] (layout/aboutme))
-  (GET "/blog/:entry" [entry] (blog/htmlitize entry))
-  (GET "/blog/:entry/edit" [entry] (blog/htmlitize-edit! entry))
+  (GET "/blog/:entry" [entry :as req] (blog/htmlitize entry))
+  (GET "/blog/:entry/edit" [entry :as req] (users/sol? req (blog/htmlitize-edit! entry)))
   (POST "/editor" [] backend.blog/edit!)
+  (GET "/newpost" [:as req] (users/sol? req (blog/new-post)))
   (GET "/blog" [] (blog/blog-homepage))
   (GET "/blog/tags/:tag" [tag] (blog/tag-page tag))
   (GET "/login" [] (login/login-page))
   (POST "/login" [] users/login-user)
   (GET "/tester" [] users/tester)
   (GET "/prntreq" [] print-request)
-  (GET "/admin" [:as req] (users/sol? req blog/admin))
+  (GET "/admin" [:as req] (users/sol? req (blog/admin)))
   (route/not-found "where are we going? "))
 
 (def app
