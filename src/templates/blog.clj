@@ -13,7 +13,8 @@
    [clojure.java.jdbc :as jdbc]
    [hiccup.page :refer [include-css include-js html5]]
    [backend.blog :as blog]
-   [templates.layout :as layout]))
+   [templates.layout :as layout]
+   [ring.util.response :as resp]))
 
 (defn blog-post-html
   "takes a list of blog entries and turns it into html"
@@ -62,10 +63,11 @@
              :content "width=device-width, initial-scale=1.0"}]
      [:title "solB"]]
     [:body
-     [:header
-      (layout/navbar)]
+     [:header (layout/navbar)]
+     [:div.adminstuff
+      [:a.newpost {:href "/newpost"} "newpost"]]
      [:div.blogonly
-      (for [i (reverse (blog/live-posts))]
+      (for [i (reverse (blog/all-posts))]
         [:div.entry
          [:a.entry {:href (str "/blog/" (:link i))}
           (:title i)]
@@ -88,25 +90,27 @@
                                               (where [:= :link
                                                       entry-title])
                                               sql/format)))]
-    (html5
-     (include-css "/styles/style.css")
-     [:html
-      [:head
-       [:meta {:name "viewport"
-               :content "width=device-width, initial-scale=1.0"}]
-       [:title "solB"]]
-      [:body
-       [:header (layout/navbar)]
-       [:div.blog
-        [:h2 (:title entry)]
-        [:div.datetagsflex
-         [:div.tags
-          (for [tag (str/split (:tags entry) #" ")]
-            (elem/link-to (str "/blog/tags/" tag)
-                          (str ":" tag)))]
-         [:div.date (f/unparse (f/formatters :date)
-                               (tc/from-sql-time (:date entry)))]]
-        [:div.content (:content entry)]]]])))
+    (if (:status "true")
+      (html5
+       (include-css "/styles/style.css")
+       [:html
+        [:head
+         [:meta {:name "viewport"
+                 :content "width=device-width, initial-scale=1.0"}]
+         [:title "solB"]]
+        [:body
+         [:header (layout/navbar)]
+         [:div.blog
+          [:h2 (:title entry)]
+          [:div.datetagsflex
+           [:div.tags
+            (for [tag (str/split (:tags entry) #" ")]
+              (elem/link-to (str "/blog/tags/" tag)
+                            (str ":" tag)))]
+           [:div.date (f/unparse (f/formatters :date)
+                                 (tc/from-sql-time (:date entry)))]]
+          [:div.content (:content entry)]]]])
+      (html5 "how did you get here??"))))
 
 (defn htmlitize-edit!
   "make a post html (fill up title content etc)"
@@ -136,15 +140,25 @@
         [:div#rip.forward {:contenteditable "true"}
          (:forward entry)]
         [:div#unhappy.content {:contenteditable "true"}
-         (:content entry)]]
-       [:form {:enctype "multipart/form-data"
-               :action "/editor"
-               :method "post"
-               :onsubmit "return getContentEditableAll()"}
-        (anti/anti-forgery-field)
-        (form/hidden-field "content")
-        (form/hidden-field "tags")
-        (form/hidden-field "title")
-        (form/hidden-field "forward")
-        (form/hidden-field "id" (:id entry))
-        [:input {:type "submit"}]]]])))
+         (:content entry)]
+        [:form {:enctype "multipart/form-data"
+                :action "/editor"
+                :method "post"
+                :onsubmit "return getContentEditableAll()"}
+         (anti/anti-forgery-field)
+         (form/hidden-field "content")
+         (form/hidden-field "tags")
+         (form/hidden-field "title")
+         (form/hidden-field "forward")
+         (form/hidden-field "id" (:id entry))
+         [:input {:type "submit"}]]]
+       ]])))
+
+(defn new-post
+  []
+  (blog/make-draft!
+   :title "new title"
+   :forward "forward"
+   :tags "tags"
+   :content "write me!")
+  (resp/redirect "/blog/new-title/edit"))
