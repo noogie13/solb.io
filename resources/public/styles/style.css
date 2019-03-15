@@ -79,22 +79,12 @@ h1 {
     max-width: 1150px;
     display: block;
     margin: auto;
-    /* position: fixed; */
-    /* background-color: #2f363d; */
-    /* background-color: rgb(30,30,30); */
-    /* padding-left: 10px; */
-    /* padding-right: 10px; */
-    /* top: 0; */
 }
 .navbar {
     display: block;
     font-family: "Raleway", sans-serif;
-    /* margin-bottom: 50px; */
-    /* background-color: #2f363d; */
-    /* background-color: rgb(30,30,30); */
     overflow: hidden;
     margin: auto;
-    /* max-width: 850px; */
     top: 0;
 }
 .navbar a.left {
@@ -246,6 +236,34 @@ img.face {
 }
 .tags a:hover {
     color: slategrey;
+}
+.adminstuff {
+    margin: auto;
+    display: flex;
+    width: 80%;
+    max-width: 1150px;
+}
+.adminstuff a {
+    font-size: 20px;
+}
+.adminstuff a:link {
+    text-decoration: none;
+    color: black;
+}
+.adminstuff a:visited {
+    text-decoration: none;
+    color: black;
+}
+.adminstuff a:active {
+    text-decoration: none;
+    color: black;
+}
+.adminstuff a:hover {
+    color: slategrey;
+}
+.blog input {
+    display: block;
+    margin: auto;
 }
 .blogonly {
     margin: auto;
