@@ -27,11 +27,12 @@
 
 (defn create-user!!
   [name username password]
-  (jdbc/execute! pg-db (-> (insert-into :users)
-                           (columns :username :password :name)
-                           (values
-                            [[username password name]])
-                           sql/format)))
+  (let* [pword (hashers/derive password)]
+    (jdbc/execute! pg-db (-> (insert-into :users)
+                             (columns :username :password :name)
+                             (values
+                              [[username password name]])
+                             sql/format))))
 (defn create-user!
   "allows duplicates, so be careful here :>"
   [request]
