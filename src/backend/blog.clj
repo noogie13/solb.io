@@ -48,8 +48,6 @@
     (as-> (edit-post! :content content :title title :forward forward :tags tags :id (read-string id)) $
       (resp/redirect (str "/blog/" $ "/edit")))))
 
-
-
 (defn make-draft!
   "make a new post, set as a draft"
   [& {:keys [title tags content forward]
@@ -67,7 +65,7 @@
                                          :tags :content
                                          :forward)
                                 (values
-                                 [[title true
+                                 [[title false
                                    link date
                                    tags content-formatted forward]])
                                 sql/format))))
@@ -78,6 +76,13 @@
   (jdbc/query db/pg-db (-> (select :*)
                            (from :posts)
                            (where [:is :status false])
+                           sql/format)))
+
+(defn all-posts
+  "duh?"
+  []
+  (jdbc/query db/pg-db (-> (select :*)
+                           (from :posts)
                            sql/format)))
 
 (defn live-posts
