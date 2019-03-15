@@ -31,7 +31,7 @@
     (jdbc/execute! pg-db (-> (insert-into :users)
                              (columns :username :password :name)
                              (values
-                              [[username password name]])
+                              [[username pword name]])
                              sql/format))))
 (defn create-user!
   "allows duplicates, so be careful here :>"
