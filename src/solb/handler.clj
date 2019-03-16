@@ -28,6 +28,7 @@
   (GET "/blog/:entry/edit" [entry :as req]
        (users/sol? req (blog/htmlitize-edit! entry)))
   (POST "/editor" [:as req] (users/sol? req (backend.blog/edit! req)))
+  (POST "/enlive" [:as req] (users/sol? req (backend.blog/enliven req)))
   (GET "/newpost" [:as req] (users/sol? req (blog/new-post)))
   (GET "/blog" [] (blog/blog-homepage))
   (GET "/blog/tags/:tag" [tag] (blog/tag-page tag))
@@ -35,7 +36,7 @@
   (POST "/login" [] users/login-user)
   ;; (GET "/tester" [] users/tester)
   ;; (GET "/prntreq" [] print-request)
-  (GET "/admin" [:as req] (users/sol? req (blog/admin)))
+  (GET "/admin" [:as req] (users/sol? req (blog/admin req)))
   (route/not-found "where are we going? "))
 
 (def app

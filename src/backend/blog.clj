@@ -21,6 +21,17 @@
                    (str "<span class=\"tidbit\">" "$1" "</span>"))
       (str )))
 
+(defn enliven
+  [req]
+  (let* [id (:id (:params req))
+         post (first (jdbc/query db/pg-db
+                          (-> (select :*) (from :posts)
+                              (where [:= :id (Integer/parseInt id)]) sql/format)))
+        status (:status post)]
+    (jdbc/update! db/pg-db :posts {:status (boolean (not status))}
+                  ["id = ?" (Integer/parseInt id)]))
+  (resp/redirect "/admin"))
+
 (defn stringify-bytes
   [bytes]
   (->> bytes (map (partial format "%02x")) (apply str)))

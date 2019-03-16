@@ -54,7 +54,7 @@
   (blog-post-html (blog/like-tag tag)))
 
 (defn admin
-  []
+  [req]
   (html5
    (include-css "/styles/style.css")
    [:html
@@ -75,6 +75,18 @@
           [:div.tags
            (elem/link-to (str "/blog/" (:link i) "/edit")
                          "::edit::")
+           [:form {:enctype "multipart/form-data"
+                   :id "enlivenform"
+                   :action "/enlive"
+                   :method "post"}
+            (anti/anti-forgery-field)
+            (form/hidden-field "id" (:id i))
+            ;; [:input {:type "submit"}]
+            [:a {:href "#"
+                 :onclick "document.getElementById('enlivenform').submit();"}
+             (if (:status i)
+               "::endraften::"
+               "::enliven::")]]
            (for [tag (str/split (:tags i) #" ")]
              (elem/link-to (str "/blog/tags/" tag)
                            (str ":" tag)))]
@@ -90,7 +102,7 @@
                                               (where [:= :link
                                                       entry-title])
                                               sql/format)))]
-    (if (:status "true")
+    (if (:status entry)
       (html5
        (include-css "/styles/style.css")
        [:html
@@ -110,7 +122,7 @@
            [:div.date (f/unparse (f/formatters :date)
                                  (tc/from-sql-time (:date entry)))]]
           [:div.content (:content entry)]]]])
-      (html5 "how did you get here??"))))
+      (html5 "hmm, how?"))))
 
 (defn htmlitize-edit!
   "make a post html (fill up title content etc)"
