@@ -77,14 +77,15 @@
            (elem/link-to (str "/blog/" (:link i) "/edit")
                          "::edit::")
            [:form {:enctype "multipart/form-data"
-                   :id "enlivenform"
+                   :id (str "enlivenform" (:id i))
                    :action "/enlive"
                    :method "post"}
             (anti/anti-forgery-field)
             (form/hidden-field "id" (:id i))
             ;; [:input {:type "submit"}]
             [:a {:href "#"
-                 :onclick "document.getElementById('enlivenform').submit();"}
+                 :onclick (str "document.getElementById('enlivenform"
+                               (:id i) "').submit();")}
              (if (:status i)
                "::endraften::"
                "::enliven::")]]
