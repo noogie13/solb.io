@@ -8,6 +8,7 @@
             [hiccup.page :refer [html5 include-css include-js]]
             [honeysql.core :as sql]
             [honeysql.helpers :as helpers :refer :all]
+            [cemerick.url :refer [url-encode]]
             [backend.db :as db]
             [ring.util.response :as resp]
             [clojure.string :as str]))
@@ -41,12 +42,12 @@
   (jdbc/update! db/pg-db :posts {:forward forward
                                  :tags tags
                                  :title title
-                                 :link (clojure.string/lower-case
-                                        (clojure.string/replace title " " "-"))
+                                 :link (url-encode (clojure.string/lower-case
+                                         (clojure.string/replace title " " "-")))
                                  :content content}
                 ["id = ?" id])
-  (clojure.string/lower-case
-   (clojure.string/replace title " " "-")))
+  (url-encode (clojure.string/lower-case
+    (clojure.string/replace title " " "-"))))
 
 (defn edit!
   [req]

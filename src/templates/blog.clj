@@ -1,5 +1,6 @@
 (ns templates.blog
   (:require
+   [cemerick.url :refer [url-encode]]
    [hiccup.core :refer :all]
    [hiccup.element :as elem]
    [hiccup.form :as form]
@@ -97,11 +98,12 @@
 (defn htmlitize
   "make a post html (fill up title content etc)"
   [entry-title]
-  (let [entry (first (jdbc/query db/pg-db (-> (select :*)
-                                              (from :posts)
-                                              (where [:= :link
-                                                      entry-title])
-                                              sql/format)))]
+  (let* [encoded-title (url-encode entry-title)
+         entry (first (jdbc/query db/pg-db (-> (select :*)
+                                               (from :posts)
+                                               (where [:= :link
+                                                       encoded-title])
+                                               sql/format)))]
     (if (:status entry)
       (html5
        (include-css "/styles/style.css")
@@ -127,10 +129,11 @@
 (defn htmlitize-edit!
   "make a post html (fill up title content etc)"
   [entry-title]
-  (let [entry (first (jdbc/query db/pg-db (-> (select :*)
+  (let* [encoded-title (url-encode entry-title)
+         entry (first (jdbc/query db/pg-db (-> (select :*)
                                               (from :posts)
                                               (where [:= :link
-                                                      entry-title])
+                                                      encoded-title])
                                               sql/format)))]
     (html5
      (include-css "/styles/style.css")

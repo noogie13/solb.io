@@ -11,6 +11,7 @@
                  [ring/ring-json "0.4.0"]
                  [org.clojure/java.jdbc "0.7.8"]
                  [org.postgresql/postgresql "42.2.5.jre7"]
+                 [com.cemerick/url "0.1.1"]
                  [honeysql "0.9.4"]]
   :main solb.handler
   :plugins [[lein-ring "0.12.4"]
