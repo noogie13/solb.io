@@ -314,13 +314,18 @@ img.face {
 .content {
     outline: 0px;
     margin-top: 20px;
-    font-size: 20px;
+    font-size: 22px;
     /* white-space: pre; */
     white-space: pre-wrap;      /* CSS3 */
     white-space: -moz-pre-wrap; /* Firefox */
     white-space: -pre-wrap;     /* Opera <7 */
     white-space: -o-pre-wrap;   /* Opera 7 */
     word-wrap: break-word;      /* IE */
+}
+.content a {
+    /* color: skyblue; */
+    color: rgb(0, 153, 255);
+    text-decoration: underline;
 }
 .datetagsflex {
     display: flex;
@@ -456,9 +461,12 @@ h2 {
 .terminal:hover {
     background-color: rgba(30,30,30,.9);
 }
+.tidbit {
+    background-color: #eee;
+}
 pre code {
     background-color: #eee;
-    border: 1px solid #999;
+    /* border: 1px solid #999; */
     display: block;
     padding: 20px;
 }
