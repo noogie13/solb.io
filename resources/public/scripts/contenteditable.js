@@ -15,6 +15,8 @@ window.onload=function() {
     contentedit.addEventListener("keydown", insertTabAtCaret);
     contentedit.addEventListener("keydown", insertNewLineAtCaret);
     contentedit.addEventListener("keydown", insertCodeBlock);
+    contentedit.addEventListener("keydown", insertTidbit);
+    contentedit.addEventListener("keydown", insertLinkify);
 }
 
 function insertTabAtCaret(event){
@@ -30,7 +32,7 @@ function insertTabAtCaret(event){
     }
 }
 function insertCodeBlock(e){
-    if(e.ctrlKey && e.which == 83){
+    if(e.ctrlKey && e.which == 66){
         e.preventDefault();
         var range = window.getSelection().getRangeAt(0);
 
@@ -40,11 +42,44 @@ function insertCodeBlock(e){
 
         pre.appendChild(code);
         code.appendChild(example);
-
         range.insertNode(pre);
-
         range.setStartAfter(pre);
         range.setEndAfter(pre);
+    }
+}
+function insertLinkify(e){
+    if(e.ctrlKey && e.which == 76){
+        e.preventDefault();
+
+        var link = prompt("Link?", "https://www.google.com");
+        var sel = window.getSelection();
+
+        var a = document.createElement("a");
+        a.setAttribute('href', link);
+        if (window.getSelection) {
+
+            if (sel.rangeCount) {
+                var range = sel.getRangeAt(0).cloneRange();
+                range.surroundContents(a);
+                sel.removeAllRanges();
+                sel.addRange(range);
+            }
+        }
+    }
+}
+function insertTidbit(e){
+    if(e.ctrlKey && e.which == 83){
+        e.preventDefault();
+        var range = window.getSelection().getRangeAt(0);
+
+        var tidbit = document.createElement("code");
+        var example = document.createTextNode("defun");
+
+        tidbit.classList.add("tidbit");
+        tidbit.appendChild(example);
+        range.insertNode(tidbit);
+        range.setStartAfter(tidbit);
+        range.setEndAfter(tidbit);
     }
 }
 function insertNewLineAtCaret(event){
