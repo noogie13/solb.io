@@ -146,7 +146,8 @@ header {
     flex-direction: column;
 }
 img.face {
-    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
     object-fit: cover;
     height: 40vw;
     width: 40vw;
