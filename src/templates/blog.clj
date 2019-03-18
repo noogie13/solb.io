@@ -44,7 +44,7 @@
                            (str ":" tag)))]
           [:div.date (f/unparse (f/formatters :date)
                                 (tc/from-sql-time (:date i)))]]
-         [:p.forward (:forward i)]])]]]))
+         [:div.forward (:forward i)]])]]]))
 
 
 (defn blog-homepage

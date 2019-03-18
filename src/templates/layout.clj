@@ -65,7 +65,7 @@
                             (str ":" tag)))]
            [:p.date (f/unparse (f/formatters :date)
                                (tc/from-sql-time (:date i)))]]
-          [:p.forward (:forward i)]])
+          [:div.forward (:forward i)]])
        ;; [:div.more
        ;;  [:a {:href "/blog"}
        ;;   [:div.morewords "↓ see more posts ↓"]]]
