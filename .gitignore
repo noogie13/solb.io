@@ -11,4 +11,4 @@ pom.xml.asc
 /resources/public/blog/live/*
 /resources/public/blog/drafts/*
 /*.pem
-/src/backends/keys
+/src/backends/keys/*
