@@ -313,6 +313,7 @@ img.face {
     margin: auto;
 }
 .content {
+    line-height: 2;
     outline: 0px;
     margin-top: 20px;
     font-size: 22px;
