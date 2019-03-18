@@ -11,6 +11,7 @@
    [backend.db :as db]
    [honeysql.core :as sql]
    [honeysql.helpers :as helpers :refer :all]
+   [templates.tracking :refer [tracking-head]]
    [clojure.java.jdbc :as jdbc]
    [hiccup.page :refer [include-css include-js html5]]
    [backend.blog :as blog]
@@ -24,6 +25,7 @@
    (include-css "/styles/style.css")
    [:html
     [:head
+     tracking-head
      [:meta {:name "viewport"
              :content "width=device-width, initial-scale=1.0"}]
      [:title "solB"]]
@@ -110,6 +112,7 @@
        (include-css "/styles/style.css")
        [:html
         [:head
+         tracking-head
          [:meta {:name "viewport"
                  :content "width=device-width, initial-scale=1.0"}]
          [:title "solB"]]

@@ -8,6 +8,7 @@
    [clj-time.format :as f]
    [clj-time.coerce :as tc]
    [backend.db :as db]
+   [templates.tracking :refer [tracking-head]]
    [honeysql.core :as sql]
    [honeysql.helpers :as helpers :refer :all]
    [clojure.java.jdbc :as jdbc]
@@ -31,6 +32,7 @@
    (include-css "styles/style.css")
    [:html
     [:head
+     tracking-head
      [:meta {:name "viewport"
              :content "width=device-width, initial-scale=1.0"}]
      [:title "solB"]]
@@ -75,6 +77,7 @@
    (include-css "styles/style.css")
    [:html
     [:head
+     tracking-head
      [:meta {:name "viewport"
              :content "width=device-width, initial-scale=1.0"}]
      [:title "solB"]]
