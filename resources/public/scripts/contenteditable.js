@@ -32,7 +32,7 @@ function insertTabAtCaret(event){
     }
 }
 function insertCodeBlock(e){
-    if(e.ctrlKey && e.which == 66){
+    if(e.ctrlKey && e.which == 188){
         e.preventDefault();
         var range = window.getSelection().getRangeAt(0);
 
