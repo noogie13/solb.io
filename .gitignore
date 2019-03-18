@@ -12,3 +12,4 @@ pom.xml.asc
 /resources/public/blog/drafts/*
 /*.pem
 /src/backends/keys/*
+/src/templates/tracking.clj
