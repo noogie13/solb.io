@@ -85,6 +85,8 @@
      [:header (navbar)]
      [:div.aboutme
       [:div.strengthflex
+       [:img ]]
+      [:div.strengthflex
        [:div.abouticon {:style "background-image:url('images/backgrounds/mars1.jpg')"}
         [:div.darken
          [:div.break]
@@ -121,7 +123,7 @@
           "But what does it mean? Analyzing data and searching for actionables is a proficiency and interest."]]]]
       [:div.experience
        [:div.break {:style "background-color: #2f363a;"}]
-       [:h2 "EXPERIENCE"]
+       [:h2 "WORK EXPERIENCE"]
        [:div.experienceflex
         [:img {:src "images/asseen/fh.png" :style "width: 200px; height: 200px;"}]]]
       [:div.asseen
