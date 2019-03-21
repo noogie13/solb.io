@@ -62,7 +62,7 @@
       (if (hashers/check password (:password query))
         (let [claims {:user (keyword username)}
               token (jwt/sign claims privkey {:alg :es256})]
-          (-> (redirect "/")
+          (-> (redirect "/admin")
               ;; (assoc :session {:token token})
               (assoc :cookies {"token" {:value token, :max-age 259200}})))
         "no")
