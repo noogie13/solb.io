@@ -47,11 +47,7 @@
      [:title "solB"]]
     [:body
      [:header
-      (templates.layout/navbar)
-      [:h1 "S"
-       [:span {:style "font-size: 26px;"}
-        "OL"] "B"]]
-     [:h1 {:style "color:black;"} "log"]
+      (templates.layout/navbar)]
      [:div#login.form
       (form/form-to {:enctype "multipart/form-data"}
                     [:post "/login"]
