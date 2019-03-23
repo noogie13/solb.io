@@ -14,8 +14,8 @@
                  [com.cemerick/url "0.1.1"]
                  [honeysql "0.9.4"]]
   :main solb.handler
-  :plugins [[lein-ring "0.12.4"]
-            [cider/cider-nrepl "0.18.0"]]
+  :plugins [[lein-ring "0.12.5"]
+            [cider/cider-nrepl "0.21.1"]]
   :ring {:handler solb.handler/app}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
