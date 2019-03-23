@@ -16,7 +16,8 @@ window.onload=function() {
     contentedit.addEventListener("keydown", insertNewLineAtCaret);
     contentedit.addEventListener("keydown", insertCodeBlock);
     contentedit.addEventListener("keydown", insertTidbit);
-    contentedit.addEventListener("keydown", insertLinkify);
+    contentedit.addEventListener("keydown", wrapLink);
+    contentedit.addEventListener("keydown", wrapH3);
 }
 
 function insertTabAtCaret(event){
@@ -47,7 +48,7 @@ function insertCodeBlock(e){
         range.setEndAfter(pre);
     }
 }
-function insertLinkify(e){
+function wrapLink(e){
     if(e.ctrlKey && e.which == 76){
         e.preventDefault();
 
@@ -61,6 +62,23 @@ function insertLinkify(e){
             if (sel.rangeCount) {
                 var range = sel.getRangeAt(0).cloneRange();
                 range.surroundContents(a);
+                sel.removeAllRanges();
+                sel.addRange(range);
+            }
+        }
+    }
+}
+function wrapH3(e){
+    if(e.ctrlKey && e.which ==  49){
+        e.preventDefault();
+
+        var sel = window.getSelection();
+
+        var h3 = document.createElement("h3");
+        if (window.getSelection) {
+            if (sel.rangeCount) {
+                var range = sel.getRangeAt(0).cloneRange();
+                range.surroundContents(h3);
                 sel.removeAllRanges();
                 sel.addRange(range);
             }
@@ -87,14 +105,27 @@ function insertNewLineAtCaret(event){
         event.preventDefault();
         var selection = window.getSelection(),
             range = selection.getRangeAt(0),
-            br = document.createTextNode('\n');
-        range.deleteContents();
+            br = document.createElement('br');
+        // range.deleteContents();
         range.insertNode(br);
         range.setStartAfter(br);
         range.setEndAfter(br);
-        range.collapse(false);
-        selection.removeAllRanges();
-        selection.addRange(range);
+        // range.collapse(false);
+        // selection.removeAllRanges();
+        // selection.addRange(range);
     }
+}
+function insertNewTopic(){
+    var selection = window.getSelection(),
+        range = selection.getRangeAt(0),
+        newTopic = document.createTextNode("λλλ"),
+        divver = document.createElement('div');
+    divver.setAttribute('style', 'text-align: center; color: slategrey;');
+    divver.appendChild(newTopic);
+
+
+    range.insertNode(divver);
+    range.setStartAfter(divver);
+    range.setEndAfter(divver);
 }
 // document.querySelector("unhappy").addEventListener("keydown",insertTabAtCaret);
