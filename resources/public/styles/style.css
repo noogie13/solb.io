@@ -25,8 +25,24 @@
     font-weight: normal;
     font-style: normal;
 }
-body {
+html,body {
     /* background-color: #e3e7ea; */
+    /* -webkit-text-size-adjust: 100%; */
+    height: 100%;
+    margin: 0;
+    /* font-size: 100%; */
+}
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* min-height: 100%; */
+    /* width: 100%; */
+    /* margin: 0; */
+    /* font-size: 100%; */
+}
+.main {
+    flex: 1;
 }
 .hobbies{
     line-height: 12px;
@@ -40,6 +56,33 @@ body {
     display: inline-block;
     padding-left: 100%;
     animation: hobbybar 10s linear infinite;
+}
+.footer {
+    color: black;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.footercontents {
+    margin: auto;
+    width: 80%;
+    max-width: 1150px;
+    font-family: "Jacques Francois";
+}
+.footercontents a:link {
+    text-decoration: none;
+    color: black;
+}
+.footercontents a:visited {
+    text-decoration: none;
+    color: black;
+}
+.footercontents a:active {
+    text-decoration: none;
+    color: black;
+}
+.footercontents a:hover {
+    /* background: #ddd; */
+    color: slategrey;
 }
 @keyframes hobbybar {
     0%   { transform: translate(0, 0); }
@@ -57,13 +100,6 @@ table {
     border: 1px solid white;
     /* padding: 5px; */
     text-align: left;
-}
-body, html {
-    /* background-color: #e3e7ea; */
-    -webkit-text-size-adjust: 100%;
-    height: 100%;
-    margin: 0;
-    font-size: 100%;
 }
 h1 {
     margin: 0;
@@ -565,6 +601,7 @@ pre code {
     background-size: cover;
     background-position: 100% 60%;
     /* background-color: black; */
+    margin-bottom: 20px;
 }
 .form {
     text-align: center;
