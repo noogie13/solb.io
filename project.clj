@@ -12,6 +12,7 @@
                  [org.clojure/java.jdbc "0.7.8"]
                  [org.postgresql/postgresql "42.2.5.jre7"]
                  [com.cemerick/url "0.1.1"]
+                 [clj-rss "0.2.3"]
                  [honeysql "0.9.4"]]
   :main solb.handler
   :plugins [[lein-ring "0.12.5"]
