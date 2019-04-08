@@ -100,8 +100,9 @@
                           (str ":" tag)))]
          [:div.date (f/unparse (f/formatters :date)
                                (tc/from-sql-time (:date entry)))]]
-        [:div.content (:content entry)]])
-      (html5 "hmm, how?"))))
+        [:div.content (:content entry)]
+       [:div.rss (elem/link-to "https://solb.io/feed.xml" "RSS FEED")]])
+      (html5 "You just tried to look at a post that isn't live! How!!"))))
 
 (defn htmlitize-edit!
   "make a post html (fill up title content etc)"
