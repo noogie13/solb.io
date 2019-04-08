@@ -2,6 +2,7 @@
   (:require [clj-time.coerce :as tc]
             [clj-time.core :as t]
             [clj-time.format :as f]
+            [clj-rss.core :as rss]
             [clojure.core :refer :all]
             [clojure.java.jdbc :as jdbc]
             [hiccup.element :as elem]
@@ -29,8 +30,11 @@
                                  (-> (select :*) (from :posts)
                                      (where [:= :id (Integer/parseInt id)]) sql/format)))
          status (:status post)]
-    (jdbc/update! db/pg-db :posts {:status (boolean (not status))}
+    (jdbc/update! db/pg-db
+                  :posts {:status (boolean (not status))
+                          :date (tc/to-sql-time (t/now))}
                   ["id = ?" (Integer/parseInt id)]))
+  (generate-rss)
   (resp/redirect "/admin"))
 
 (defn stringify-bytes
@@ -113,3 +117,20 @@
                                           (where ["tags::text like "
                                                   (str "%" tag "%")])
                                           sql/format))))
+
+(defn generate-rss
+  []
+  (let [raw-query (sort-by :date (jdbc/query db/pg-db (-> (select :title :link :forward :date :tags)
+                                                          (from :posts)
+                                                          (where [:is :status true])
+                                                          sql/format)))]
+    (spit "resources/public/feed.xml"
+          (rss/channel-xml {:title "Sol Explores The World" :link "https://solb.io"
+                            :description "Mostly posts about programming stuff, maybe something else thrown in once in a while (nothing boring I promise)."}
+                           (for [post raw-query]
+                             {:title (:title post)
+                              :pubDate (:date post)
+                              :description (:forward post)
+                              :link (str "https://solb.io/blog/" (:link post))
+                              :category [(for [tag (str/split (:tags post) #" ")]
+                                           [{:domain (str "https://solb.io/blog/tags/" tag)} tag])]})))))
