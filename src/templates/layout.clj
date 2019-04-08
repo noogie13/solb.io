@@ -35,6 +35,10 @@
 
 (def head
   [:head tracking-head
+   [:link {:rel "alternate"
+           :type "application/rss+xml"
+           :title "Sol Explores The World"
+           :href "/feed.xml"}]
    [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0"}]
    [:title "solB"]])
 
