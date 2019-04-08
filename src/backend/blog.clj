@@ -26,9 +26,9 @@
   [req]
   (let* [id (:id (:params req))
          post (first (jdbc/query db/pg-db
-                          (-> (select :*) (from :posts)
-                              (where [:= :id (Integer/parseInt id)]) sql/format)))
-        status (:status post)]
+                                 (-> (select :*) (from :posts)
+                                     (where [:= :id (Integer/parseInt id)]) sql/format)))
+         status (:status post)]
     (jdbc/update! db/pg-db :posts {:status (boolean (not status))}
                   ["id = ?" (Integer/parseInt id)]))
   (resp/redirect "/admin"))
@@ -43,11 +43,11 @@
                                  :tags tags
                                  :title title
                                  :link (url-encode (clojure.string/lower-case
-                                         (clojure.string/replace title " " "-")))
+                                                    (clojure.string/replace title " " "-")))
                                  :content content}
                 ["id = ?" id])
   (url-encode (clojure.string/lower-case
-    (clojure.string/replace title " " "-"))))
+               (clojure.string/replace title " " "-"))))
 
 (defn edit!
   [req]
@@ -85,31 +85,31 @@
 (defn drafts-posts
   "pull all draft posts in a sequence"
   []
-  (jdbc/query db/pg-db (-> (select :*)
-                           (from :posts)
-                           (where [:is :status false])
-                           sql/format)))
+  (sort-by :date (jdbc/query db/pg-db (-> (select :*)
+                                          (from :posts)
+                                          (where [:is :status false])
+                                          sql/format))))
 
 (defn all-posts
   "duh?"
   []
-  (jdbc/query db/pg-db (-> (select :*)
-                           (from :posts)
-                           sql/format)))
+  (sort-by :date (jdbc/query db/pg-db (-> (select :*)
+                                          (from :posts)
+                                          sql/format))))
 
 (defn live-posts
   "pull all live posts in a sequence"
   []
-  (jdbc/query db/pg-db (-> (select :*)
-                           (from :posts)
-                           (where [:is :status true])
-                           sql/format)))
+  (sort-by :date (jdbc/query db/pg-db (-> (select :*)
+                                          (from :posts)
+                                          (where [:is :status true])
+                                          sql/format))))
 
 (defn like-tag
   "pull other posts with the tag ~tag"
   [tag]
-  (jdbc/query db/pg-db (-> (select :*)
-                           (from :posts)
-                           (where ["tags::text like "
-                                   (str "%" tag "%")])
-                           sql/format)))
+  (sort-by :date (jdbc/query db/pg-db (-> (select :*)
+                                          (from :posts)
+                                          (where ["tags::text like "
+                                                  (str "%" tag "%")])
+                                          sql/format))))
