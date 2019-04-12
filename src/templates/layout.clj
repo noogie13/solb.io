@@ -80,21 +80,20 @@
   []
   (page-template
    [:div.aboutme
-    [:div.strengthflex
-     [:img ]]
+    [:div.info "Hi! I'm Sol and I like to learn. I study at Syracuse University working towards a B.S. in Applied Mathematics, and minors in both Physics and Computer Science. I like to work hard, and take great pride in success. My (ugly) " (elem/link-to {:class navbar} "https://docs.google.com/document/d/1Q33ErfDa9UBIAdvirshkTVl9We6zalZAxsgp3X_tH1g/edit" "resume") "."]
     [:div.strengthflex
      [:div.abouticon {:style "background-image:url('images/backgrounds/mars1.jpg')"}
       [:div.darken
        [:div.break]
        [:h2 {:style "font-family: Hack, monospace;"}
-        "PROGRAMMING"]
+        "COMPUTER SCIENCE"]
        [:div.terminal
         "sol@"
         [:span {:style "color:aqua"}
          "sol-pc"] "-&gt; pwd"
         [:br] [:br] "/home/sol/Documents/" [:br] [:br] "sol@"
         [:span {:style "color:aqua"}
-         "sol-pc"] "-&gt; Love for programming, picks up new languages fast. Special place for functional programming."]]]
+         "sol-pc"] "-&gt; Always building new features for my window manager. Loves hacking around."]]]
      [:div.abouticon
       {:style "background-image:url('images/backgrounds/mars2.jpg'); font-family: 'Computer Modern', serif;"}
       [:div.darken
@@ -102,21 +101,15 @@
        [:h2 {:style "font-family:'Computer Modern', serif; font-weight: normal;"}
         "MATHEMATICS"]
        [:div.math-text
-        "Studying applied mathematics, enjoys diving into questions of not just how do we solve a problem, but how can we solve it " [:i "optimally."]]]]
+        "Studying applied mathematics. Algorithm enthusiast. Doesn't ask \"How do we do it?\" but \"How do we do it " [:i "optimally?\""]]]]
      [:div.abouticon
       {:style "background-image:url('images/backgrounds/mars3.jpg')"}
       [:div.darken
        [:div.break]
-       [:h2 "DATA ANALYSIS"]
+       [:h2 "PHYSICS"]
        [:div.math-text
-        {:style "font-family: Raleway;"}
-        " "
-        [:table.home
-         [:tr.home [:th.home "Last Name"] [:th.home "First Name"] [:th.home "Zip"]]
-         [:tr.home [:th.home "Hathaway"] [:th.home "Donny"] [:th.home "60007"]]
-         [:tr.home [:th.home "Gaye"] [:th.home "Marvin"] [:th.home "20001"]]]
-        [:br]
-        "But what does it mean? Analyzing data and searching for actionables is a proficiency and interest."]]]]
+        {:style "font-family: 'Libre Baskerville'; font-size: 14px;"}
+        "Studying physics out of pure curiousity. Interested in quantum mechanics, and super interested in quantum computing. Worked with computational simulations, fun!"]]]]
     [:div.experience
      [:div.break {:style "background-color: #2f363a;"}]
      [:h2 "WORK EXPERIENCE"]
