@@ -1,10 +1,6 @@
 @font-face {
 }
 @font-face {
-    font-family: "Raleway";
-    src: url("fonts/Raleway/Raleway-Regular.ttf");
-}
-@font-face {
     font-family: "Alcubierre";
     src: url("fonts/Alcubierre.ttf") format("truetype"), url("fonts/Alcubierre.woff") format("woff");
 }
@@ -51,6 +47,22 @@ body {
     white-space: nowrap;
     overflow: hidden;
     box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+    color: rgb(0, 153, 255);
+}
+a:link {
+    text-decoration: none;
+}
+a:visited {
+    text-decoration: none;
+}
+a:active {
+    text-decoration: none;
+}
+a:hover {
+    color: slategrey;
 }
 .hobbies p {
     display: inline-block;
@@ -127,7 +139,6 @@ table {
 h1 {
     margin: 0;
     padding-top: 50px;
-    font-family: "Raleway", sans-serif;
     letter-spacing: 5px;
     font-size: 35px;
     text-align: center;
@@ -141,7 +152,6 @@ h1 {
 }
 .navbar {
     display: block;
-    font-family: "Raleway", sans-serif;
     overflow: hidden;
     margin: auto;
     top: 0;
@@ -251,18 +261,6 @@ img.face {
     display: flex;
     flex-wrap: wrap;
 }
-.aboutme {
-    justify-content: center;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    max-width: 1200px;
-    margin: auto;
-}
 .entry {
     text-decoration: none;
     color: black;
@@ -292,7 +290,7 @@ img.face {
     margin: 0 4px 0;
     color: #795C9F;
     text-decoration: none;
-    font-size: 3vw;
+    font-size: 16px;
 }
 .tags a:hover {
     color: slategrey;
@@ -356,7 +354,7 @@ img.face {
     color: rgba(0,0,0,.7);
     font-family: "Jacques Francois";
     font-weight: normal;
-    font-size: 3vw;
+    font-size: 16px;
     text-align: center;
 }
 .blog {
@@ -375,7 +373,7 @@ img.face {
     line-height: 2;
     outline: 0px;
     margin-top: 20px;
-    font-size: 22px;
+    font-size: 20px;
     /* white-space: pre; */
     white-space: pre-wrap;      /* CSS3 */
     white-space: -moz-pre-wrap; /* Firefox */
@@ -394,13 +392,13 @@ img.face {
 .date {
     float: right;
     display: block;
-    margin-top: 3px;
+    margin-top: -2px;
     margin-left: auto;
     float: right;
     color: rgba(0,0,0,.5);
     font-family: "Jacques Francois";
     font-weight: normal;
-    font-size: 3vw;
+    font-size: 16px;
 }
 .blog h2 {
     font-family: "Jacques Francois";
@@ -410,11 +408,15 @@ img.face {
     padding-top: 45px;
     padding-left: 0;
     letter-spacing: 0;
-    font-size: 50px;
+    font-size: 45px;
 }
 h3 {
     font-family: "Jacques Francois";
     font-weight: normal;
+    color: black;
+    margin: 0;
+    letter-spacing: 0;
+    font-size: 25px;
 }
 .content {
     font-family: "Libre Baskerville";
@@ -426,7 +428,7 @@ h2 {
     margin: 0;
     padding-top: 20px;
     padding-left: 30px;
-    font-family: "Raleway", sans-serif;
+    font-family: "Libre Baskerville";
     letter-spacing: 3px;
     font-size: 25px;
     color: white;
@@ -587,21 +589,30 @@ pre code {
     text-align: left;
     position: block;
 }
+.aboutme {
+    justify-content: center;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    max-width: 1200px;
+    margin: auto;
+}
+.info {
+    font-family: "Libre Baskerville";
+    font-size: 18px;
+    margin: auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 50%;
+    text-align: center;
+}
 .abouticon:hover img {
     opacity: .1;
     transition: .2s;
-}
-.strengthflex a {
-    text-decoration: none;
-}
-.strengthflex a:link {
-    text-decoration: none;
-}
-.strengthflex a:visited {
-    text-decoration: none;
-}
-.strengthflex a:active {
-    text-decoration: none;
 }
 .experienceflex {
     padding: 25px;
@@ -660,22 +671,5 @@ pre code {
     }
     img.face {
         margin: auto;
-    }
-}
-@media only screen and (min-width: 901px) {
-    .forward {
-        font-size: 19px;
-    }
-    .entry {
-        font-size: 23px;
-    }
-    .date {
-        font-size: 19px;
-    }
-    .tags a {
-        font-size: 19px;
-    }
-    .tags {
-        font-size: 19px;
     }
 }
