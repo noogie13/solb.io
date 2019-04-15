@@ -673,3 +673,8 @@ pre code {
         margin: auto;
     }
 }
+@media only screen and (min-width: 900px) {
+    .entry {
+        font-size: 30px;
+    }
+}
