@@ -124,7 +124,7 @@
                              (tc/from-sql-time (:date entry)))]]
       [:div#rip.forward {:contenteditable "true"}
        (:forward entry)]
-      [:div#unhappy.content {:contenteditable "true"}
+      [:div#unhappy.content {:contenteditable "true" :style "display: inline-block;"}
        (:content entry)]
       [:form {:enctype "multipart/form-data"
               :action "/editor"
