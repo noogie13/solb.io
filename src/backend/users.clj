@@ -15,7 +15,8 @@
    [buddy.auth.accessrules :refer [restrict]]
    [buddy.auth :refer [authenticated? throw-unauthorized]]
    [buddy.auth.backends.token :refer [jws-backend]]
-   [buddy.hashers :as hashers]))
+   [buddy.hashers :as hashers]
+   [ring.util.response :as resp]))
 
 ;; "es256"
 
@@ -68,12 +69,14 @@
         "no")
       "no")))
 
-(defmacro sol?
+(defn sol?
   [request next]
-  `(if (= "sol" ((jwt/unsign (((~request :cookies) "token") :value)
+  (if ((request :cookies) "token")
+    (if (= "sol" ((jwt/unsign (((request :cookies) "token") :value)
                              pubkey {:alg :es256}) :user))
-     ~next
-     (html5 "not authorized --")))
+     next
+     (resp/redirect "/login"))
+    (resp/redirect "/login")))
 
 (defn tester
   [request]
