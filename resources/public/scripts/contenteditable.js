@@ -13,39 +13,55 @@ function getContentEditableAll() {
 window.onload=function() {
     var contentedit = document.getElementById('unhappy');
     contentedit.addEventListener("keydown", insertTabAtCaret);
-    contentedit.addEventListener("keydown", insertNewLineAtCaret);
-    contentedit.addEventListener("keydown", insertCodeBlock);
-    contentedit.addEventListener("keydown", insertTidbit);
+    // contentedit.addEventListener("keydown", insertNewLineAtCaret);
+    contentedit.addEventListener("keydown", changeCodeBlock);
+    contentedit.addEventListener("keydown", wrapTidbit);
     contentedit.addEventListener("keydown", wrapLink);
-    contentedit.addEventListener("keydown", wrapH3);
+    contentedit.addEventListener("keydown", changeH3);
+    contentedit.addEventListener("keydown", changeNormal);
 }
-
-function insertTabAtCaret(event){
-    if(event.keyCode === 9){
-        event.preventDefault();
-        var range = window.getSelection().getRangeAt(0);
-
-        var tabNode = document.createTextNode("\u00a0\u00a0\u00a0\u00a0");
-        range.insertNode(tabNode);
-
-        range.setStartAfter(tabNode);
-        range.setEndAfter(tabNode);
-    }
+function insertAfter(newNode, referenceNode) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
-function insertCodeBlock(e){
+function changeParent(newParent){
+    var sel = window.getSelection(),
+        container = sel.anchorNode.parentNode,
+        emptyDiv = document.createElement("div");
+    newParent.innerHTML = container.innerHTML;
+    if (container.classList.contains("content")) {return 0;}
+    container.replaceWith(newParent);
+    var range = document.createRange();
+    var sel = window.getSelection();
+    range.setStart(newParent.childNodes[newParent.childNodes.length - 1],newParent.childNodes[0].length);
+    range.collapse(true);
+    sel.removeAllRanges();
+    sel.addRange(range);
+    // emptyDiv.appendChild(document.createElement("br"));
+    // insertAfter(emptyDiv, newParent);
+}
+function changeCodeBlock(e){
     if(e.ctrlKey && e.which == 188){
         e.preventDefault();
-        var range = window.getSelection().getRangeAt(0);
+        var precode = document.createElement("div"),
+            sel = window.getSelection(),
+            container = sel.anchorNode.parentNode;
+        precode.classList.add("precode");
+        changeParent(precode);
+    }
+}
+function changeH3(e){
+    if(e.ctrlKey && e.which ==  50){
+        e.preventDefault();
+        h3 = document.createElement("h3");
+        changeParent(h3);
+    }
+}
+function changeNormal(e){
+    if(e.ctrlKey && e.which ==  49){
+        e.preventDefault();
 
-        var pre = document.createElement("pre");
-        var code = document.createElement("code");
-        var example = document.createTextNode("defun");
-
-        pre.appendChild(code);
-        code.appendChild(example);
-        range.insertNode(pre);
-        range.setStartAfter(pre);
-        range.setEndAfter(pre);
+        div = document.createElement("div");
+        changeParent(div);
     }
 }
 function wrapLink(e){
@@ -68,36 +84,20 @@ function wrapLink(e){
         }
     }
 }
-function wrapH3(e){
-    if(e.ctrlKey && e.which ==  49){
+function wrapTidbit(e){
+    if(e.ctrlKey && e.which == 83){
         e.preventDefault();
-
         var sel = window.getSelection();
-
-        var h3 = document.createElement("h3");
+        var tidbit = document.createElement("code");
+        tidbit.classList.add("tidbit");
         if (window.getSelection) {
             if (sel.rangeCount) {
                 var range = sel.getRangeAt(0).cloneRange();
-                range.surroundContents(h3);
+                range.surroundContents(tidbit);
                 sel.removeAllRanges();
                 sel.addRange(range);
             }
         }
-    }
-}
-function insertTidbit(e){
-    if(e.ctrlKey && e.which == 83){
-        e.preventDefault();
-        var range = window.getSelection().getRangeAt(0);
-
-        var tidbit = document.createElement("code");
-        var example = document.createTextNode("defun");
-
-        tidbit.classList.add("tidbit");
-        tidbit.appendChild(example);
-        range.insertNode(tidbit);
-        range.setStartAfter(tidbit);
-        range.setEndAfter(tidbit);
     }
 }
 function insertNewLineAtCaret(event){
@@ -106,13 +106,9 @@ function insertNewLineAtCaret(event){
         var selection = window.getSelection(),
             range = selection.getRangeAt(0),
             br = document.createElement('br');
-        // range.deleteContents();
         range.insertNode(br);
         range.setStartAfter(br);
         range.setEndAfter(br);
-        // range.collapse(false);
-        // selection.removeAllRanges();
-        // selection.addRange(range);
     }
 }
 function insertNewTopic(){
@@ -128,4 +124,14 @@ function insertNewTopic(){
     range.setStartAfter(divver);
     range.setEndAfter(divver);
 }
-// document.querySelector("unhappy").addEventListener("keydown",insertTabAtCaret);
+function insertTabAtCaret(event){
+    if(event.keyCode === 9){
+        event.preventDefault();
+        var range = window.getSelection().getRangeAt(0);
+
+        var tabNode = document.createTextNode("\u00a0\u00a0\u00a0\u00a0");
+        range.insertNode(tabNode);
+        range.setStartAfter(tabNode);
+        range.setEndAfter(tabNode);
+    }
+}
