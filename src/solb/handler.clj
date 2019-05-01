@@ -13,14 +13,6 @@
             [templates.blog :as blog]
             [clojure.java.io :as io]))
 
-(defn print-request
-  [request]
-  (html5 request))
-
-(defn print-content
-  [req]
-  (html5  (req :params)))
-
 (defroutes app-routes
   (GET "/" [] (layout/homepage))
   (GET "/aboutme" [] (layout/aboutme))
