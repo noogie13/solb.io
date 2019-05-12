@@ -1,9 +1,11 @@
 (ns templates.blog
   (:require
-   [cemerick.url :refer [url-encode]]
+   ;; [cemerick.url :refer [url-encode]]
    [hiccup.core :refer :all]
    [hiccup.element :as elem]
    [hiccup.form :as form]
+   [hiccup.page :refer [include-css include-js html5]]
+   [hiccup.util :refer [url-encode]]
    [ring.util.anti-forgery :as anti]
    [clojure.string :as str]
    [clj-time.format :as f]
@@ -13,7 +15,6 @@
    [honeysql.helpers :as helpers :refer :all]
    [templates.tracking :refer [tracking-head]]
    [clojure.java.jdbc :as jdbc]
-   [hiccup.page :refer [include-css include-js html5]]
    [backend.blog :as blog]
    [templates.layout :as layout]
    [ring.util.response :as resp]))
