@@ -48,7 +48,9 @@
     `(page-template {} ~options ~@forms)
     `(html5 (include-css "/styles/style.css")
             (if (contains? ~options :js)
-              (map include-js (~options :js)))
+              (if (string? (~options :js))
+                (include-js (~options :js))
+                (map include-js (~options :js))))
             [:html ~head
              [:body
               [:div.main
@@ -59,7 +61,7 @@
 (defn homepage
   []
   (page-template
-   {:js ["/scripts/contenteditable.js"]}
+   {:js "/scripts/contenteditable.js"}
    [:div.first
     [:div.face [:img.face {:src "images/me.jpg"}]]
     [:div.bloglist
