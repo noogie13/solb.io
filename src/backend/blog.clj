@@ -6,10 +6,10 @@
             [clojure.core :refer :all]
             [clojure.java.jdbc :as jdbc]
             [hiccup.element :as elem]
+            [hiccup.util :refer [url-encode]]
             [hiccup.page :refer [html5 include-css include-js]]
             [honeysql.core :as sql]
             [honeysql.helpers :as helpers :refer :all]
-            [cemerick.url :refer [url-encode]]
             [backend.db :as db]
             [ring.util.response :as resp]
             [clojure.string :as str]))
