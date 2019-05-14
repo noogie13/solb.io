@@ -302,7 +302,10 @@ img.face {
     max-width: 1150px;
 }
 .adminstuff a {
+    color: black;
+    font-family: "Libre Baskerville";
     font-size: 20px;
+    margin: auto;
 }
 .adminstuff a:link {
     text-decoration: none;
