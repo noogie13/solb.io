@@ -8,7 +8,7 @@
 
 (defonce characters "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
 
-(def image-location "/home/sol/files/")
+(def file-storage-location "/home/sol/files/")
 
 (defn random-chars
   [n]
@@ -41,7 +41,7 @@
   [req]
   (let* [id (unique-id)
          token (get (req :params) "token")
-         data (str image-location id)]
+         data (str file-storage-location id)]
     (when-let [username (validate-token-return-username token)]
       (cond
         (string? (get (req :params) "file")) (spit data (get (req :params) "file"))
@@ -53,7 +53,7 @@
        (-> (insert-into :shortened)
            (columns :id :type :data :username)
            (values
-            [[id (get (req :params) "type") data username]])
+            [[id (get (req :params) "type") "" username]])
            sql/format))
       (str "https://solb.io/" id))))
 
@@ -73,7 +73,7 @@
 
 (defn return-shortened
   [id]
-  (let [query-result (first (jdbc/query pg-db (-> (select :type :data)
+  (let [query-result (first (jdbc/query pg-db (-> (select :type :data :id)
                                                   (from :shortened)
                                                   (where [:= :id id])
                                                   sql/format)))]
@@ -83,4 +83,4 @@
        :body ""}
       {:status 200
        :headers {"Content-Type" (query-result :type)}
-       :body (io/file (query-result :data))})))
+       :body (io/file (str file-storage-location (query-result :id)))})))
