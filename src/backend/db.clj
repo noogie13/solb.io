@@ -20,7 +20,6 @@
                                           [:tags "VARCHAR(255)"]
                                           [:forward "VARCHAR(255)"]
                                           [:content "TEXT"]]))
-;; (jdbc/execute! pg-db shortened)
 
 ;; (defn post []
 ;;   (jdbc/execute! pg-db posts))
@@ -31,6 +30,8 @@
                                           [:token "VARCHAR(255)"]]))
 
 (def shortened (jdbc/create-table-ddl :shortened [[:id "VARCHAR(255)"]
-                                                  [:user "VARCHAR(255)"]
+                                                  [:username "VARCHAR(255)"]
                                                   [:type "VARCHAR(255)"]
                                                   [:data "VARCHAR(255)"]]))
+
+(jdbc/execute! pg-db shortened)
