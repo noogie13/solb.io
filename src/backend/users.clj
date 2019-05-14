@@ -1,12 +1,13 @@
 (ns backend.users
   (:require
+   [backend.utils :as utils]
+   [backend.db :refer [pg-db]]
    [clj-time.core :as t]
    [clojure.java.io :as io]
    [clojure.java.jdbc :as jdbc]
    [ring.util.response :refer [response redirect]]
    [honeysql.core :as sql]
    [honeysql.helpers :refer :all :as helpers]
-   [backend.db :refer [pg-db]]
    [hiccup.page :refer [html5]]
    [cheshire.core :as json]
    [buddy.core.nonce :as nonce]
@@ -54,32 +55,53 @@
   (let* [params (:params request)
          username (:username params)
          password (:password params)
-         session (:session request)
          query (first (jdbc/query pg-db (-> (select :*)
                                             (from :users)
                                             (where [:= :username username])
                                             sql/format)))]
-    (if (not (nil? query))
+    (if query
       (if (hashers/check password (:password query))
         (let [claims {:user (keyword username)}
               token (jwt/sign claims privkey {:alg :es256})]
           (-> (redirect "/admin")
-              ;; (assoc :session {:token token})
               (assoc :cookies {"token" {:value token, :max-age 259200}})))
         "no")
       "no")))
 
 (defn sol?
   [request next]
-  (if ((request :cookies) "token")
-    (if (= "sol" ((jwt/unsign (((request :cookies) "token") :value)
-                             pubkey {:alg :es256}) :user))
-     next
-     (resp/redirect "/login"))
+  (if (= "sol" ((jwt/unsign (((request :cookies) "token") :value)
+                            pubkey {:alg :es256}) :user))
+    next
     (resp/redirect "/login")))
 
-(defn tester
+(defn unique-token
+  []
+  (let [new-token (utils/generate-token)]
+    (if (first (jdbc/query pg-db (-> (select :*)
+                                     (from :users)
+                                     (where [:= :token new-token])
+                                     sql/format)))
+      (unique-token)
+      new-token)))
+
+(defn show-token
   [request]
-  (html5 "hi"))
-;; (html5 (jwt/unsign (((request :cookies) "token") :value)
-;;                    pubkey {:alg :es256})))
+  (if-let [username ((jwt/unsign (((request :cookies) "token") :value)
+                                 pubkey {:alg :es256}) :user)]
+    (-> (jdbc/query pg-db (-> (select :token)
+                           (from :users)
+                           (where [:= :username username])
+                           sql/format))
+        (first)
+        (:token))))
+
+(defn add-token
+  [request]
+  (if-let [username ((jwt/unsign (((request :cookies) "token") :value)
+                                 pubkey {:alg :es256}) :user)]
+    (let [new-token (unique-token)]
+      (jdbc/update! pg-db
+                    :users {:token new-token}
+                    ["username = ?" username])
+      new-token)))
