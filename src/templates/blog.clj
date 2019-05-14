@@ -50,8 +50,17 @@
 (defn admin
   [req]
   (layout/page-template
+   {:js "/scripts/admin.js"}
    [:div.adminstuff
-    [:a.newpost {:href "/newpost"} "newpost"]]
+    [:a {:href "/newpost"} "new post"]
+    [:a#token {:onclick
+               "getRequest(\"/showtoken\",
+                  (txt)=>{ document.getElementById(\"token\").innerHTML = txt})"}
+     "show token"]
+    [:a {:onclick
+         "getRequest(\"/generatetoken\",
+            (txt)=>{ document.getElementById(\"token\").innerHTML = txt});"}
+     "get new token"]]
    [:div.blogonly
     (for [i (reverse (blog/all-posts))]
       [:div.entry
@@ -102,7 +111,7 @@
          [:div.date (f/unparse (f/formatters :date)
                                (tc/from-sql-time (:date entry)))]]
         [:div.content (:content entry)]
-       [:div.rss (elem/link-to "https://solb.io/feed.xml" "RSS FEED")]])
+        [:div.rss (elem/link-to "https://solb.io/feed.xml" "RSS FEED")]])
       (html5 "You just tried to look at a post that isn't live! How!!"))))
 
 (defn htmlitize-edit!
