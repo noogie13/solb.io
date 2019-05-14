@@ -8,7 +8,7 @@
 
 (defonce characters "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
 
-(def image-location "/home/sol/screenshots/")
+(def image-location "/home/sol/files/")
 
 (defn random-chars
   [n]
@@ -55,7 +55,7 @@
            (values
             [[id (get (req :params) "type") data username]])
            sql/format))
-      id)))
+      (str "https://solb.io/" id))))
 
 (defn redirect-upload
   [req]
@@ -69,7 +69,7 @@
                                  (values
                                   [[id "redirect" data username]])
                                  sql/format))
-        id))))
+        (str "https://solb.io/" id)))))
 
 (defn return-shortened
   [id]
