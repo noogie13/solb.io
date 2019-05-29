@@ -8,7 +8,7 @@
             [ring.util.response :as resp]
             [ring.middleware.cookies :refer [wrap-cookies]]
             [ring.middleware.params :refer [wrap-params]]
-            [ ring.middleware.multipart-params :refer [wrap-multipart-params]]
+            [ring.middleware.multipart-params :refer [wrap-multipart-params]]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults api-defaults]]
             [templates.layout :as layout]
             [templates.login :as login]
