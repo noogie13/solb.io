@@ -536,7 +536,7 @@ h2 {
     font-size: 18px;
 }
 .precode {
-    font-family: mono;
+    font-family: monospace;
     font-size: 18px;
     word-wrap: break-word;
     overflow-x: auto;
