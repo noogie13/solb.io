@@ -6,15 +6,10 @@
 
 (defonce path "src/backend/")
 
-;; (re-find #"'.*'" blah)
-;; (sh "./calscript.py")
-
 (defn get-ics-string
   [input-string]
-  (as-> (sh "./calscript.py" input-string :dir path) $
-       (:out $)
-       (re-find #"'(.*)'" $)
-       (nth $ 1)))
+  (->> (sh "./calscript.py" input-string :dir path)
+       (:out)))
 
 (defn get-ics-from-req
   [req]
@@ -24,5 +19,4 @@
                     (get-ics-string))]
     {:status 200
      :headers {}
-     :body string
-     :content-type "Text/Plain"}))
+     :body string}))
