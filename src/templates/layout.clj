@@ -123,3 +123,16 @@
       [:h2 "AS SEEN"]
       (elem/link-to {:target "_blank"}
                     "http://dailyorange.com/2016/11/super-smash-bros-builds-community-across-central-new-york/")]]]))
+
+(defn su-cal
+  []
+  (page-template
+   {:js "/scripts/su-cal.js"}
+   [:div.blog
+    [:h1 "ical your schedule"]
+    [:div.content "Go to View Class Schedule on myslice, then at the bottom click Printer Friendly Page, and copy paste everything. Ctrl+a -> Ctrl+p. Paste it in here."]
+    (form/text-area {:id "cal-raw"} "cal")
+    [:button {:onclick
+              "window.open('/su-cal-gen?cal=' + encodeURI(document.getElementById('cal-raw').value))"
+              :style "display: block; margin: auto;"}
+     "get ics"]]))
