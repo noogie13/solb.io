@@ -24,4 +24,5 @@
                     (get-ics-string))]
     {:status 200
      :headers {}
-     :body string}))
+     :body string
+     :content-type "Text/Plain"}))
