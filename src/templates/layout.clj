@@ -130,9 +130,18 @@
    {:js "/scripts/su-cal.js"}
    [:div.blog
     [:h1 "ical your schedule"]
-    [:div.content "Go to View Class Schedule on myslice, then at the bottom click Printer Friendly Page, and copy paste everything. Ctrl+a -> Ctrl+p. Paste it in here."]
+    [:div.content [:ul
+                   [:li "Log into MySlice, click on \"View Class Schedule\""]
+                   [:li "Click \"View Printer Friendly Version\""]
+                   [:li "Copy the entire page (Ctrl+A then Ctrl+C)"]
+                   [:li "Paste into the field below."]
+                   [:li "Click the button, save the file as a .ics file (something with .ics after it's name, e.g. "
+                    [:code.tidbit "cal.ics"] "."]
+                   "Then you can import this file into any calendar appliation you'd like."
+                   [:br]
+                   "NOTE: I " [:strong "STRONGLY"]
+                   " recommend making a new calendar on Google Calendar before importing this. Just in case something breaks."]]
     (form/text-area {:id "cal-raw"} "cal")
-    [:button {:onclick
-              "window.open('/su-cal-gen?cal=' + encodeURI(document.getElementById('cal-raw').value))"
+    [:button {:onclick "window.open('/su-cal-gen?cal=' + encodeURI(document.getElementById('cal-raw').value))"
               :style "display: block; margin: auto;"}
      "get ics"]]))
