@@ -142,7 +142,6 @@ h1 {
     letter-spacing: 5px;
     font-size: 35px;
     text-align: center;
-    color: white;
 }
 .navbarcontain {
     width: 80%;
@@ -323,6 +322,12 @@ img.face {
     color: slategrey;
 }
 .blog input {
+    display: block;
+    margin: auto;
+}
+textarea {
+    height: 300px;
+    width: 60%;
     display: block;
     margin: auto;
 }
