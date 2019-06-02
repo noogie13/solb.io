@@ -4,6 +4,7 @@
             [hiccup.page :refer [html5]]
             [backend.users :as users]
             [backend.utils :as utils]
+            [backend.calendar :as cal]
             [org.httpkit.server :refer [run-server]]
             [ring.util.response :as resp]
             [ring.middleware.cookies :refer [wrap-cookies]]
@@ -24,6 +25,8 @@
            (GET "/:entry" [entry :as req] (blog/htmlitize entry))
            (GET "/:entry/edit" [entry :as req]
                 (users/sol? req (blog/htmlitize-edit! entry))))
+  (GET "/su-cal" [] (layout/su-cal))
+  (GET "/su-cal-gen" [:as req] (cal/get-ics-from-req req))
   (POST "/editor" [:as req] (users/sol? req (backend.blog/edit! req)))
   (POST "/enlive" [:as req] (users/sol? req (backend.blog/enliven req)))
   (POST "/login" [] users/login-user)
