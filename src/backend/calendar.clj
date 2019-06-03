@@ -9,9 +9,9 @@
 (defn get-ics-string
   [input-string]
   (as-> (sh "./calscript.py" input-string :dir path) ics
-       (:out ics)
-       (re-find #"b'(.*)'" ics)
-       (nth ics 1)))
+       (:out ics)))
+       ;; (re-find #"b'(.*)'" ics)
+       ;; (nth ics 1)))
 
 (defn get-ics-from-req
   [req]
