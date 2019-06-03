@@ -15,7 +15,7 @@
 
 (defn get-ics-from-req
   [req]
-  (let [string (->> (req :query-params)
+  (let [string (->> (req :params)
                     (reduce into [])
                     (apply str)
                     (get-ics-string))]
