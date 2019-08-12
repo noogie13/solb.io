@@ -19,7 +19,7 @@
   [:div.navbarcontain
    [:div.navbar {:style "font-family: 'Jacques Francois';"}
     [:a.right {:href "/blog"} "Blog"]
-    [:a.right {:href "/aboutme"} "About Me"]
+    [:a.right {:href "/bio"} "Bio"]
     [:div.navbarname [:a {:href "/"}
                       "Solomon Bloch"]]]])
 
@@ -78,10 +78,10 @@
                              (tc/from-sql-time (:date i)))]]
         [:div.forward (:forward i)]])]]))
 
-(defn aboutme
+(defn bio
   []
   (page-template
-   [:div.aboutme
+   [:div.bio
     [:div.info "Hi! I'm Sol and I like to learn. I study at Syracuse University working towards a B.S. in Applied Mathematics, and minors in both Physics and Computer Science. I like to work hard, and take great pride in success. My (ugly) " (elem/link-to {:class navbar} "https://docs.google.com/document/d/1Q33ErfDa9UBIAdvirshkTVl9We6zalZAxsgp3X_tH1g/edit" "resume") "."]
     [:div.strengthflex
      [:div.abouticon {:style "background-image:url('images/backgrounds/mars1.jpg')"}
