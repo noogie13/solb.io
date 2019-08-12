@@ -1,4 +1,6 @@
 @font-face {
+    font-family: "Libre Baskerville";
+    src: url("fonts/LibreBaskerville-Regular.ttf") format("truetype");
 }
 @font-face {
     font-family: "Alcubierre";
