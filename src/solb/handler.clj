@@ -18,7 +18,7 @@
 
 (defroutes app-routes
   (GET "/" [] (layout/homepage))
-  (GET "/aboutme" [] (layout/aboutme))
+  (GET "/bio" [] (layout/bio))
   (context "/blog" []
            (GET "/" [] (blog/blog-homepage))
            (GET "/tags/:tag" [tag] (blog/tag-page tag))
