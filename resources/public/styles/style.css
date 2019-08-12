@@ -272,7 +272,7 @@ img.face {
     letter-spacing: 1px;
     font-family: 'Jacques Francois';
     font-size: 4vw;
-    max-font-size: 20px;
+    max-font-size: 18px;
     font-weight: normal;
     font-style: normal;
     color: black;
@@ -387,7 +387,7 @@ textarea {
     line-height: 2;
     outline: 0px;
     margin-top: 20px;
-    font-size: 20px;
+    font-size: 18px;
     /* white-space: pre; */
     white-space: pre-wrap;      /* CSS3 */
     white-space: -moz-pre-wrap; /* Firefox */
@@ -544,6 +544,7 @@ h2 {
 }
 .tidbit {
     background-color: #eee;
+    font-family: "Consolas";
     font-size: 18px;
 }
 .precode {
