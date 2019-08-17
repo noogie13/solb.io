@@ -134,7 +134,7 @@
                    [:li "Log into MySlice, click on \"View Class Schedule\""]
                    [:li "Click \"View Printer Friendly Version\""]
                    [:li "Copy the entire page (Ctrl+A then Ctrl+C)"]
-                   [:li "Paste into the field below."]
+                   [:li "Paste into the text field below."]
                    [:li "Click the button, save the file as a .ics file (something with .ics after it's name, e.g. "
                     [:code.tidbit "cal.ics"] "."]
                    "Then you can import this file into any calendar appliation you'd like."
