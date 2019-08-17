@@ -111,7 +111,7 @@
        [:h2 "PHYSICS"]
        [:div.math-text
         {:style "font-family: 'Libre Baskerville'; font-size: 14px;"}
-        "Studying physics out of pure curiousity. Interested in quantum mechanics, and super interested in quantum computing. Worked with computational simulations, fun!"]]]]
+        "Studying physics out of curiousity. Interested in quantum mechanics, and super interested in quantum computing. Worked with computational simulations, fun!"]]]]
     [:div.experience
      [:div.break {:style "background-color: #2f363a;"}]
      [:h2 "WORK EXPERIENCE"]
