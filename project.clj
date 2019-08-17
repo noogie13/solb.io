@@ -15,8 +15,8 @@
                  [clj-rss "0.2.3"]
                  [honeysql "0.9.4"]]
   :main solb.handler
-  :plugins [[lein-ring "0.12.5"]
-            [cider/cider-nrepl "0.21.1"]]
+  :plugins [[lein-ring "0.12.5"]]
+            ;; [cider/cider-nrepl "0.21.1"]]
   :ring {:handler solb.handler/app}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
