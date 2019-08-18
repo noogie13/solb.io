@@ -140,7 +140,7 @@
                    "Then you can import this file into any calendar appliation you'd like."
                    [:br]
                    "NOTE: I " [:strong "STRONGLY"]
-                   " recommend making a new calendar on Google Calendar before importing this. Just in case something breaks."]]
+                   " recommend making a new calendar on Google Calendar before importing the ICS. Just in case something breaks."]]
     (form/text-area {:id "cal-raw"} "cal")
     [:button {:onclick "window.open('/su-cal-gen?cal=' + encodeURI(document.getElementById('cal-raw').value))"
               :style "display: block; margin: auto;"}
