@@ -10,7 +10,7 @@ import tempfile, os
 
 
 def event_parse(class_list, cal):
-    if class_list[11] == 'ONLINE ASYNCHRONOUS' or class_list[2] == 'DROPPED' or class_list[10] == 'TBA' or class_list[11] == 'TBA':
+    if class_list[11] == 'ONLINE ASYNCHRONOUS' or class_list[2] == 'Dropped' or class_list[10] == 'TBA' or class_list[11] == 'TBA':
         return
     title = class_list[0]
     class_list = class_list[7:]
