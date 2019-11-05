@@ -10,6 +10,8 @@ import tempfile, os
 
 
 def event_parse(class_list):
+    if class_list[11] == 'ONLINE ASYNCHRONOUS' or class_list[2] == 'DROPPED':
+        return
     title = class_list[0]
     class_list = class_list[7:]
     for t in [class_list[i:i+7] for i in range(0,len(class_list),7)]:
