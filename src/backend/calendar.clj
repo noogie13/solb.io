@@ -9,16 +9,13 @@
 (defn get-ics-string
   [input-string]
   (as-> (sh "./calscript.py" input-string :dir path) ics
-       (:out ics)))
-       ;; (re-find #"b'(.*)'" ics)
-       ;; (nth ics 1)))
+    (:out ics)))
 
 (defn get-ics-from-req
   [req]
-  (let [string (->> (req :query-params)
-                    (reduce into [])
-                    (apply str)
-                    (get-ics-string))]
+  (let [cal-string (-> (req :params)
+                       (:cal)
+                       (get-ics-string))]
     {:status 200
      :headers {}
-     :body string}))
+     :body cal-string}))

@@ -9,15 +9,18 @@ from textwrap import wrap
 import tempfile, os
 
 
-def event_parse(class_list):
-    if class_list[11] == 'ONLINE ASYNCHRONOUS' or class_list[2] == 'DROPPED':
+def event_parse(class_list, cal):
+    if class_list[11] == 'ONLINE ASYNCHRONOUS' or class_list[2] == 'DROPPED' or class_list[10] == 'TBA' or class_list[11] == 'TBA':
         return
     title = class_list[0]
     class_list = class_list[7:]
     for t in [class_list[i:i+7] for i in range(0,len(class_list),7)]:
-        dtstart = datetime.strptime(t[3].split(' ')[1] + t[6].split(' ')[0], '%I:%M%p%m/%d/%Y').replace(tzinfo=pytz.timezone('America/New_York'))
-        dtend = datetime.strptime(t[3].split(' ')[3] + t[6].split(' ')[0], '%I:%M%p%m/%d/%Y').replace(tzinfo=pytz.timezone('America/New_York'))
-        until = datetime.strptime(t[3].split(' ')[3] + t[6].split(' ')[2], '%I:%M%p%m/%d/%Y').replace(tzinfo=pytz.timezone('America/New_York'))
+        dtstart = datetime.strptime(t[3].split(' ')[1] + t[6].split(' ')[0],
+                                    '%I:%M%p%m/%d/%Y').replace(tzinfo=pytz.timezone('America/New_York'))
+        dtend = datetime.strptime(t[3].split(' ')[3] + t[6].split(' ')[0],
+                                  '%I:%M%p%m/%d/%Y').replace(tzinfo=pytz.timezone('America/New_York'))
+        until = datetime.strptime(t[3].split(' ')[3] + t[6].split(' ')[2],
+                                  '%I:%M%p%m/%d/%Y').replace(tzinfo=pytz.timezone('America/New_York'))
         e = Event()
         e.add('SUMMARY', title)
         day_string = wrap(t[3].split(' ')[0].upper(), 2)
@@ -53,12 +56,9 @@ def open_file(file_string):
             class_temp.append(line)
     return classes
 
-if len(sys.argv) > 1:
-    cal = Calendar()
-    classes = open_file(sys.argv[1])
-    for each in classes:
-        event_parse(each)
-    print(cal.to_ical())
-#    with open('schedule.ics', "wb") as f:
-#        f.write((cal.to_ical()))
-#        print("schedule.isc written")
+
+cal = Calendar()
+classes = open_file(sys.argv[1])
+for c in classes:
+    event_parse(c, cal)
+print(cal.to_ical())

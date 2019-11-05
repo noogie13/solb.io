@@ -142,6 +142,6 @@
                    "NOTE: I " [:strong "STRONGLY"]
                    " recommend making a new calendar on Google Calendar before importing the ICS. Just in case something breaks."]]
     (form/text-area {:id "cal-raw"} "cal")
-    [:button {:onclick "window.open('/su-cal-gen?cal=' + encodeURI(document.getElementById('cal-raw').value))"
+    [:button {:onclick "window.open('/su-cal-gen?cal=' + encodeURI(document.getElementById('cal-raw').value.replace(/&/g,'')))"
               :style "display: block; margin: auto;"}
      "get ics"]]))
