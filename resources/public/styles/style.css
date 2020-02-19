@@ -229,6 +229,7 @@ img.face {
     /* min-width: 350px; */
     max-height: 450px;
     max-width: 450px;
+    padding-right: 30px;
 }
 .social img {
     width: 5vw;
@@ -292,10 +293,10 @@ img.face {
     /* margin-top: -6px; */
 }
 .tags a {
+    display: inline-block;
     margin: 0 4px 0;
     color: #795C9F;
     text-decoration: none;
-    font-size: 16px;
 }
 .tags a:hover {
     color: slategrey;
@@ -350,10 +351,9 @@ textarea {
     flex-direction: column;
 }
 .bloglist {
-    padding-left: 14px;
     margin: auto;
     /* margin-top: 30px; */
-    width: 55%;
+    width: 50%;
     max-width: 1200px;
     display: flex;
     display: -webkit-box;
@@ -402,17 +402,18 @@ textarea {
 }
 .datetagsflex {
     display: flex;
+    font-family: "Jacques Francois";
+    font-weight: normal;
+    font-size: 16px;
 }
 .date {
+    white-space: nowrap;
     float: right;
     display: block;
     margin-top: -2px;
     margin-left: auto;
     float: right;
     color: rgba(0,0,0,.5);
-    font-family: "Jacques Francois";
-    font-weight: normal;
-    font-size: 16px;
 }
 .blog h2 {
     font-family: "Jacques Francois";
@@ -668,12 +669,25 @@ h2 {
     .blog {
         width: 80%;
     }
+    .rss {
+        font-size: 10px;
+    }
+    .content
+    {
+        font-size: 10px;
+    }
+    .blog h2 {
+        font-size: 20px;
+    }
+    .precode {
+        font-size: 11px;
+    }
     .navbarname {
         font-size: 20px;
         padding-top: 10px;
     }
     .navbar a {
-        font-size: 14px;
+        font-size: 11px;
     }
     .first {
         width: 100%;
@@ -688,6 +702,24 @@ h2 {
     img.face {
         margin: auto;
     }
+    .datetagsflex {
+        font-size: 10px;
+    }
+    .navbarname {
+        padding-top: 0;
+    }
+    .navbar a.right {
+        padding: 7px 8px;
+    }
+    .forward
+    {
+        font-size: 10px;
+    }
+    .footercontents
+    {
+        font-size: 10px;
+    }
+
 }
 @media only screen and (min-width: 900px) {
     .entry {
