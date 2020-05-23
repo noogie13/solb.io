@@ -26,7 +26,7 @@
 (def footer
   [:div.footer
    [:div.footercontents
-    [:div "©2018 Sol B"]
+    [:div "©2020 Sol Bloch"]
     [:div
      (elem/link-to "https://www.linkedin.com/in/solomon-bloch-151309167/"
                    "LinkedIn") " | "
@@ -76,53 +76,20 @@
                           (str ":" tag)))]
          [:p.date (f/unparse (f/formatters :date)
                              (tc/from-sql-time (:date i)))]]
-        [:div.forward (:forward i)]])]]))
+        [:div.forwardtimeflex
+         [:div.forward (:forward i)]
+         [:div.readtime "~"
+          (int (Math/ceil (/ (count (clojure.string/split (:content i) #"\s+")) 265)))
+          " min read"]]])]]))
 
 (defn bio
   []
   (page-template
-   [:div.bio
-    [:div.info "I'm Sol and I like to learn. I study at Syracuse University working towards a B.S. in Applied Mathematics, and minors in both Physics and Computer Science. I like to work hard, and take great pride in success. My (ugly) " (elem/link-to {:class navbar} "https://docs.google.com/document/d/1Q33ErfDa9UBIAdvirshkTVl9We6zalZAxsgp3X_tH1g/edit" "resume") "."]
-    [:div.strengthflex
-     [:div.abouticon {:style "background-image:url('images/backgrounds/mars1.jpg')"}
-      [:div.darken
-       [:div.break]
-       [:h2 {:style "font-family: Hack, monospace;"}
-        "COMPUTER SCIENCE"]
-       [:div.terminal
-        "sol@"
-        [:span {:style "color:aqua"}
-         "sol-pc"] "-&gt; pwd"
-        [:br] [:br] "/home/sol/Documents/" [:br] [:br] "sol@"
-        [:span {:style "color:aqua"}
-         "sol-pc"] "-&gt; Always building new features for my window manager. Loves hacking around."]]]
-     [:div.abouticon
-      {:style "background-image:url('images/backgrounds/mars2.jpg'); font-family: 'Computer Modern', serif;"}
-      [:div.darken
-       [:div.break]
-       [:h2 {:style "font-family:'Computer Modern', serif; font-weight: normal;"}
-        "MATHEMATICS"]
-       [:div.math-text
-        "Studying applied mathematics. Algorithm enthusiast. Doesn't ask \"How do we do it?\" but \"How do we do it " [:i "optimally?\""]]]]
-     [:div.abouticon
-      {:style "background-image:url('images/backgrounds/mars3.jpg')"}
-      [:div.darken
-       [:div.break]
-       [:h2 "PHYSICS"]
-       [:div.math-text
-        {:style "font-family: 'Libre Baskerville'; font-size: 14px;"}
-        "Studying physics out of curiousity. Interested in quantum mechanics, and very interested in quantum computing. Worked with computational simulations, fun!"]]]]
-    [:div.experience
-     [:div.break {:style "background-color: #2f363a;"}]
-     [:h2 "WORK EXPERIENCE"]
-     [:div.experienceflex
-      [:img {:src "images/asseen/fh.png" :style "width: 200px; height: 200px;"}]]]
-    [:div.asseen
-     [:div.colorlayer
-      [:div.break]
-      [:h2 "AS SEEN"]
-      (elem/link-to {:target "_blank"}
-                    "http://dailyorange.com/2016/11/super-smash-bros-builds-community-across-central-new-york/")]]]))
+   [:div.blog
+    [:div.content
+     "I'm Sol, ex-Google-interviewee. I studied at Syracuse University, receiving a major in applied mathematics, and minors in both computer science, and physics. And had a blast! If you'd like to see, here's my "
+     (elem/link-to  "https://docs.google.com/document/d/1Q33ErfDa9UBIAdvirshkTVl9We6zalZAxsgp3X_tH1g/edit" "resume") "."
+     ]]))
 
 (defn su-cal
   []
@@ -130,17 +97,18 @@
    {:js "/scripts/su-cal.js"}
    [:div.blog
     [:h1 "ical your schedule"]
-    [:div.content [:ul
-                   [:li "Log into MySlice, click on \"View Class Schedule\""]
-                   [:li "Click \"View Printer Friendly Version\""]
-                   [:li "Copy the entire page (Ctrl+A then Ctrl+C)"]
-                   [:li "Paste into the text field below."]
-                   [:li "Click the button, save the file as a .ics file (something with .ics after it's name, e.g. "
-                    [:code.tidbit "cal.ics"] "."]
-                   "Then you can import this file into any calendar appliation you'd like."
-                   [:br]
-                   "NOTE: I " [:strong "STRONGLY"]
-                   " recommend making a new calendar on Google Calendar before importing the ICS. Just in case something breaks."]]
+    [:div.content
+     [:ul
+      [:li "Log into MySlice, click on \"View Class Schedule\""]
+      [:li "Click \"View Printer Friendly Version\""]
+      [:li "Copy the entire page (Ctrl+A then Ctrl+C)"]
+      [:li "Paste into the text field below."]
+      [:li "Click the button, save the file as a .ics file (something with .ics after it's name, e.g. "
+       [:code.tidbit "cal.ics"] "."]
+      "Then you can import this file into any calendar appliation you'd like."
+      [:br]
+      "NOTE: I " [:strong "STRONGLY"]
+      " recommend making a new calendar on Google Calendar before importing the ICS. Just in case something breaks."]]
     (form/text-area {:id "cal-raw"} "cal")
     [:button {:onclick "window.open('/su-cal-gen?cal=' + encodeURI(document.getElementById('cal-raw').value.replace(/&/g,'')))"
               :style "display: block; margin: auto;"}

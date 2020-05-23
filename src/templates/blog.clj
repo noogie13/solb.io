@@ -35,7 +35,11 @@
                          (str ":" tag)))]
         [:div.date (f/unparse (f/formatters :date)
                               (tc/from-sql-time (:date i)))]]
-       [:div.forward (:forward i)]])]))
+       [:div.forwardtimeflex
+        [:div.forward (:forward i)]
+        [:div.readtime "~"
+         (int (Math/ceil (/ (count (clojure.string/split (:content i) #"\s+")) 265)))
+         " min read"]]])]))
 
 
 (defn blog-homepage
