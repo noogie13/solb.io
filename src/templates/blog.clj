@@ -23,6 +23,7 @@
   "takes a list of blog entries and turns it into html"
   [post-list]
   (layout/page-template
+   {:title "solB blog"}
    [:div.blogonly
     (for [i (reverse post-list)]
       [:div.entry
@@ -54,7 +55,7 @@
 (defn admin
   [req]
   (layout/page-template
-   {:js "/scripts/admin.js"}
+   {:js "/scripts/admin.js" :title "solb admin"}
    [:div.adminstuff
     [:a {:href "/newpost"} "new post"]
     [:a#token {:onclick
@@ -105,6 +106,7 @@
                                                sql/format)))]
     (if (:status entry)
       (layout/page-template
+       {:title (:title entry)}
        [:div.blog
         [:h2 (:title entry)]
         [:div.datetagsflex
@@ -128,7 +130,7 @@
                                                        encoded-title])
                                                sql/format)))]
     (layout/page-template
-     {:js ["/scripts/contenteditable.js"]}
+     {:js ["/scripts/contenteditable.js"] :options (str "edit " (:title entry))}
      [:div.blog
       [:h2#sad {:contenteditable "true"} (:title entry)]
       [:div.datetagsflex

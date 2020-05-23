@@ -51,6 +51,8 @@
               (if (string? (~options :js))
                 (include-js (~options :js))
                 (map include-js (~options :js))))
+            (if (contains? ~options :title)
+              [:title (~options :title)])
             [:html ~head
              [:body
               [:div.main
@@ -61,7 +63,7 @@
 (defn homepage
   []
   (page-template
-   {:js "/scripts/contenteditable.js"}
+   {:js "/scripts/contenteditable.js" :title "solB"}
    [:div.first
     [:div.face [:img.face {:src "images/me.jpg"}]]
     [:div.bloglist
@@ -85,6 +87,7 @@
 (defn bio
   []
   (page-template
+   {:title "Bio"}
    [:div.blog
     [:div.content
      "I'm Sol, ex-Google-interviewee. I studied at Syracuse University, receiving a major in applied mathematics, and minors in both computer science, and physics. And had a blast! If you'd like to see, here's my "
@@ -94,7 +97,7 @@
 (defn su-cal
   []
   (page-template
-   {:js "/scripts/su-cal.js"}
+   {:js "/scripts/su-cal.js" :title "su-cal"}
    [:div.blog
     [:h1 "ical your schedule"]
     [:div.content
