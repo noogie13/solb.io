@@ -70,9 +70,10 @@
 
 (defn sol?
   [request next]
-  (if (= "sol" ((jwt/unsign (((request :cookies) "token") :value)
-                            pubkey {:alg :es256}) :user))
-    next
+  (if (:value ((request :cookies) "token"))
+    (if (= "sol" ((jwt/unsign (((request :cookies) "token") :value)
+                              pubkey {:alg :es256}) :user))
+      next)
     (resp/redirect "/login")))
 
 (defn unique-token
