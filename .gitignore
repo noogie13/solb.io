@@ -14,3 +14,4 @@ pom.xml.asc
 /src/backend/keys
 /src/backend/keys/*
 /src/templates/tracking.clj
+/resources
